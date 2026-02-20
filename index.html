@@ -1,96 +1,1073 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="/_vercel/insights/script.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css"
-    />
-    <title>Vercel HTML Starter</title>
-    <meta
-      name="description"
-      content="High-performance HTML based website template."
-    />
-  </head>
-  <body>
-    <h1>Vercel HTML Starter</h1>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Complete JLPT N5 Japanese Course</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', sans-serif; background: #0f0f1a; color: #e0e0f0; min-height: 100vh; }
+  
+  header { background: linear-gradient(135deg, #1a1a3e, #2d1b69); padding: 20px 30px; border-bottom: 2px solid #7c3aed; }
+  header h1 { font-size: 2rem; color: #a78bfa; }
+  header p { color: #c4b5fd; margin-top: 5px; }
+  
+  nav { display: flex; flex-wrap: wrap; gap: 8px; padding: 15px 30px; background: #1a1a2e; border-bottom: 1px solid #2d2d5e; }
+  nav button { padding: 8px 16px; border: 1px solid #4c1d95; background: #1e1b4b; color: #c4b5fd; border-radius: 20px; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; }
+  nav button:hover, nav button.active { background: #7c3aed; color: white; border-color: #7c3aed; }
+  
+  .content { padding: 30px; max-width: 1200px; margin: 0 auto; }
+  
+  .section { display: none; }
+  .section.active { display: block; }
+  
+  h2 { color: #a78bfa; font-size: 1.6rem; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #2d2d5e; }
+  h3 { color: #c4b5fd; font-size: 1.2rem; margin: 20px 0 10px; }
+  
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin: 15px 0; }
+  .card { background: #1e1b4b; border: 1px solid #2d2d5e; border-radius: 12px; padding: 15px; text-align: center; cursor: pointer; transition: all 0.2s; }
+  .card:hover { border-color: #7c3aed; transform: translateY(-2px); background: #252060; }
+  .card .jp { font-size: 2rem; margin-bottom: 5px; }
+  .card .rom { color: #a78bfa; font-size: 0.85rem; }
+  .card .meaning { color: #d1d5db; font-size: 0.8rem; margin-top: 3px; }
+  .card .on { color: #f59e0b; font-size: 0.75rem; }
+  .card .kun { color: #34d399; font-size: 0.75rem; }
+  
+  .hiragana-table, .katakana-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+  .hiragana-table td, .katakana-table td { border: 1px solid #2d2d5e; padding: 10px; text-align: center; background: #1e1b4b; }
+  .hiragana-table td:first-child, .katakana-table td:first-child { background: #2d1b69; color: #c4b5fd; font-weight: bold; width: 40px; }
+  .hiragana-table th, .katakana-table th { background: #2d1b69; color: #a78bfa; padding: 8px; border: 1px solid #2d2d5e; }
+  .hiragana-table .kana { font-size: 1.4rem; display: block; }
+  .hiragana-table .rom2, .katakana-table .rom2 { font-size: 0.7rem; color: #a78bfa; }
+  .katakana-table .kana { font-size: 1.4rem; display: block; }
+  
+  .vocab-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 10px; margin: 15px 0; }
+  .vocab-item { background: #1e1b4b; border: 1px solid #2d2d5e; border-radius: 10px; padding: 12px 15px; display: flex; align-items: center; gap: 10px; }
+  .vocab-item .jp-word { font-size: 1.3rem; min-width: 80px; }
+  .vocab-item .details { flex: 1; }
+  .vocab-item .reading { color: #a78bfa; font-size: 0.85rem; }
+  .vocab-item .eng { color: #e0e0f0; font-size: 0.9rem; }
+  .vocab-item .type { background: #4c1d95; color: #c4b5fd; font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-top: 3px; }
+  
+  .grammar-box { background: #1e1b4b; border-left: 4px solid #7c3aed; border-radius: 0 10px 10px 0; padding: 15px 20px; margin: 12px 0; }
+  .grammar-box .pattern { color: #f59e0b; font-size: 1.1rem; margin-bottom: 8px; font-weight: bold; }
+  .grammar-box .usage { color: #d1d5db; font-size: 0.9rem; margin-bottom: 8px; }
+  .grammar-box .example { background: #252060; border-radius: 8px; padding: 10px; margin-top: 8px; }
+  .grammar-box .example .jp-ex { font-size: 1rem; margin-bottom: 3px; }
+  .grammar-box .example .rom-ex { color: #a78bfa; font-size: 0.85rem; }
+  .grammar-box .example .eng-ex { color: #9ca3af; font-size: 0.85rem; }
+  
+  .quiz-container { max-width: 600px; margin: 0 auto; }
+  .quiz-q { background: #1e1b4b; border-radius: 15px; padding: 30px; text-align: center; margin-bottom: 20px; }
+  .quiz-q .question { font-size: 3rem; margin-bottom: 10px; }
+  .quiz-q .hint { color: #a78bfa; font-size: 0.9rem; }
+  .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .quiz-opt { background: #1e1b4b; border: 2px solid #2d2d5e; border-radius: 10px; padding: 12px; cursor: pointer; font-size: 1rem; text-align: center; transition: all 0.2s; }
+  .quiz-opt:hover { border-color: #7c3aed; background: #252060; }
+  .quiz-opt.correct { border-color: #34d399; background: #064e3b; }
+  .quiz-opt.wrong { border-color: #ef4444; background: #450a0a; }
+  .quiz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; }
+  .quiz-nav button { background: #7c3aed; color: white; border: none; padding: 10px 25px; border-radius: 8px; cursor: pointer; font-size: 1rem; }
+  .score-display { font-size: 1.2rem; color: #a78bfa; }
+  
+  .progress-section { margin-bottom: 25px; }
+  .progress-bar { height: 8px; background: #1e1b4b; border-radius: 4px; overflow: hidden; margin-top: 5px; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, #7c3aed, #a78bfa); border-radius: 4px; transition: width 0.3s; }
+  
+  .tip-box { background: #1a3a2a; border: 1px solid #34d399; border-radius: 10px; padding: 15px 20px; margin: 12px 0; }
+  .tip-box h4 { color: #34d399; margin-bottom: 8px; }
+  .tip-box p { color: #d1d5db; font-size: 0.9rem; line-height: 1.6; }
+  
+  .plan-week { background: #1e1b4b; border-radius: 12px; padding: 20px; margin: 10px 0; border: 1px solid #2d2d5e; }
+  .plan-week h4 { color: #f59e0b; margin-bottom: 10px; }
+  .plan-week ul { list-style: none; }
+  .plan-week ul li { color: #d1d5db; padding: 5px 0; font-size: 0.9rem; padding-left: 20px; position: relative; }
+  .plan-week ul li::before { content: "▸"; position: absolute; left: 0; color: #7c3aed; }
+  
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; margin: 2px; }
+  .badge-n { background: #4c1d95; color: #e9d5ff; }
+  .badge-v { background: #1e3a5f; color: #93c5fd; }
+  .badge-adj { background: #1a3a2a; color: #6ee7b7; }
+  .badge-adv { background: #3d1515; color: #fca5a5; }
+  
+  table.resources { width: 100%; border-collapse: collapse; margin: 15px 0; }
+  table.resources th { background: #2d1b69; color: #a78bfa; padding: 10px; border: 1px solid #2d2d5e; text-align: left; }
+  table.resources td { border: 1px solid #2d2d5e; padding: 10px; background: #1e1b4b; color: #d1d5db; font-size: 0.9rem; }
+
+  .intro-hero { text-align: center; padding: 30px 20px; background: linear-gradient(135deg, #1a1a3e, #2d1b69); border-radius: 15px; margin-bottom: 30px; }
+  .intro-hero h2 { border: none; font-size: 2rem; }
+  .intro-hero p { color: #c4b5fd; margin-top: 10px; font-size: 1rem; line-height: 1.7; max-width: 700px; margin: 10px auto 0; }
+  .stats-row { display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; margin-top: 20px; }
+  .stat-box { background: #1e1b4b; border-radius: 10px; padding: 15px 25px; text-align: center; border: 1px solid #2d2d5e; }
+  .stat-box .num { font-size: 2rem; color: #a78bfa; font-weight: bold; }
+  .stat-box .label { color: #9ca3af; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🇯🇵 Complete JLPT N5 Japanese Course</h1>
+  <p>Master Hiragana, Katakana, Kanji, Vocabulary, Grammar & Speaking — all in one place</p>
+</header>
+
+<nav>
+  <button class="active" onclick="show('intro')">🏠 Overview</button>
+  <button onclick="show('hiragana')">あ Hiragana</button>
+  <button onclick="show('katakana')">ア Katakana</button>
+  <button onclick="show('kanji')">漢 N5 Kanji</button>
+  <button onclick="show('vocab')">📚 Vocabulary</button>
+  <button onclick="show('grammar')">📝 Grammar</button>
+  <button onclick="show('speaking')">🗣️ Speaking</button>
+  <button onclick="show('quiz')">🧠 Quiz</button>
+  <button onclick="show('plan')">📅 Study Plan</button>
+  <button onclick="show('resources')">🔗 Resources</button>
+</nav>
+
+<div class="content">
+
+<!-- INTRO -->
+<div class="section active" id="intro">
+  <div class="intro-hero">
+    <h2>Welcome to Your N5 Journey! 🎌</h2>
+    <p>JLPT N5 is the entry level of the Japanese Language Proficiency Test. This course covers everything you need: the two phonetic alphabets, all 103 N5 kanji, essential vocabulary (~800 words), and core grammar patterns. Expect 3–6 months of consistent study to be ready.</p>
+    <div class="stats-row">
+      <div class="stat-box"><div class="num">46</div><div class="label">Hiragana</div></div>
+      <div class="stat-box"><div class="num">46</div><div class="label">Katakana</div></div>
+      <div class="stat-box"><div class="num">103</div><div class="label">N5 Kanji</div></div>
+      <div class="stat-box"><div class="num">800+</div><div class="label">Vocabulary</div></div>
+      <div class="stat-box"><div class="num">~100</div><div class="label">Grammar Points</div></div>
+    </div>
+  </div>
+
+  <div class="progress-section">
+    <h3>📊 N5 Test Overview</h3>
+    <p style="color:#d1d5db;margin:10px 0;line-height:1.7;">The JLPT N5 test has 3 sections: Language Knowledge (vocabulary/kanji), Reading, and Listening. The test lasts about 105 minutes total. You need ~80/180 points to pass (no individual section cutoff for N5).</p>
+  </div>
+
+  <div class="tip-box">
+    <h4>🗺️ Recommended Learning Order</h4>
+    <p>1. Learn Hiragana completely (1–2 weeks) → 2. Learn Katakana (1–2 weeks) → 3. Basic vocabulary + phrases → 4. Grammar patterns → 5. Kanji (learn alongside vocab) → 6. Reading & Listening practice → 7. Mock tests</p>
+  </div>
+
+  <h3>🔤 The Japanese Writing Systems</h3>
+  <div class="grammar-box">
+    <div class="pattern">Hiragana (ひらがな)</div>
+    <div class="usage">46 characters. Used for native Japanese words, verb endings, particles. Round, curvy shapes. Learn this FIRST.</div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">Katakana (カタカナ)</div>
+    <div class="usage">46 characters. Used for foreign loanwords, scientific terms, emphasis. Angular, straight shapes. Learn this SECOND.</div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">Kanji (漢字)</div>
+    <div class="usage">Chinese-origin characters. N5 requires 103 kanji. Each has ON reading (Chinese origin) and KUN reading (Japanese). Learn gradually alongside vocabulary.</div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">Romaji (ローマ字)</div>
+    <div class="usage">Latin alphabet representation of Japanese sounds. Useful for beginners but avoid relying on it — learn the native scripts!</div>
+  </div>
+</div>
+
+<!-- HIRAGANA -->
+<div class="section" id="hiragana">
+  <h2>あ Hiragana — Complete Chart</h2>
+  <div class="tip-box">
+    <h4>💡 Learning Tips</h4>
+    <p>Learn 5-10 characters per day. Write each one 10× while saying it aloud. Use mnemonics: あ (a) looks like an 'a' with a top stroke. Practice with the word: あり (ari) = ant.</p>
+  </div>
+  <table class="hiragana-table">
+    <tr><th></th><th>a</th><th>i</th><th>u</th><th>e</th><th>o</th></tr>
+    <tr><td>—</td><td><span class="kana">あ</span><span class="rom2">a</span></td><td><span class="kana">い</span><span class="rom2">i</span></td><td><span class="kana">う</span><span class="rom2">u</span></td><td><span class="kana">え</span><span class="rom2">e</span></td><td><span class="kana">お</span><span class="rom2">o</span></td></tr>
+    <tr><td>k</td><td><span class="kana">か</span><span class="rom2">ka</span></td><td><span class="kana">き</span><span class="rom2">ki</span></td><td><span class="kana">く</span><span class="rom2">ku</span></td><td><span class="kana">け</span><span class="rom2">ke</span></td><td><span class="kana">こ</span><span class="rom2">ko</span></td></tr>
+    <tr><td>s</td><td><span class="kana">さ</span><span class="rom2">sa</span></td><td><span class="kana">し</span><span class="rom2">shi</span></td><td><span class="kana">す</span><span class="rom2">su</span></td><td><span class="kana">せ</span><span class="rom2">se</span></td><td><span class="kana">そ</span><span class="rom2">so</span></td></tr>
+    <tr><td>t</td><td><span class="kana">た</span><span class="rom2">ta</span></td><td><span class="kana">ち</span><span class="rom2">chi</span></td><td><span class="kana">つ</span><span class="rom2">tsu</span></td><td><span class="kana">て</span><span class="rom2">te</span></td><td><span class="kana">と</span><span class="rom2">to</span></td></tr>
+    <tr><td>n</td><td><span class="kana">な</span><span class="rom2">na</span></td><td><span class="kana">に</span><span class="rom2">ni</span></td><td><span class="kana">ぬ</span><span class="rom2">nu</span></td><td><span class="kana">ね</span><span class="rom2">ne</span></td><td><span class="kana">の</span><span class="rom2">no</span></td></tr>
+    <tr><td>h</td><td><span class="kana">は</span><span class="rom2">ha</span></td><td><span class="kana">ひ</span><span class="rom2">hi</span></td><td><span class="kana">ふ</span><span class="rom2">fu</span></td><td><span class="kana">へ</span><span class="rom2">he</span></td><td><span class="kana">ほ</span><span class="rom2">ho</span></td></tr>
+    <tr><td>m</td><td><span class="kana">ま</span><span class="rom2">ma</span></td><td><span class="kana">み</span><span class="rom2">mi</span></td><td><span class="kana">む</span><span class="rom2">mu</span></td><td><span class="kana">め</span><span class="rom2">me</span></td><td><span class="kana">も</span><span class="rom2">mo</span></td></tr>
+    <tr><td>y</td><td><span class="kana">や</span><span class="rom2">ya</span></td><td></td><td><span class="kana">ゆ</span><span class="rom2">yu</span></td><td></td><td><span class="kana">よ</span><span class="rom2">yo</span></td></tr>
+    <tr><td>r</td><td><span class="kana">ら</span><span class="rom2">ra</span></td><td><span class="kana">り</span><span class="rom2">ri</span></td><td><span class="kana">る</span><span class="rom2">ru</span></td><td><span class="kana">れ</span><span class="rom2">re</span></td><td><span class="kana">ろ</span><span class="rom2">ro</span></td></tr>
+    <tr><td>w</td><td><span class="kana">わ</span><span class="rom2">wa</span></td><td></td><td></td><td></td><td><span class="kana">を</span><span class="rom2">wo</span></td></tr>
+    <tr><td>n</td><td><span class="kana">ん</span><span class="rom2">n</span></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+
+  <h3>Dakuten (濁点) — Voiced Consonants</h3>
+  <table class="hiragana-table">
+    <tr><th></th><th>a</th><th>i</th><th>u</th><th>e</th><th>o</th></tr>
+    <tr><td>g</td><td><span class="kana">が</span><span class="rom2">ga</span></td><td><span class="kana">ぎ</span><span class="rom2">gi</span></td><td><span class="kana">ぐ</span><span class="rom2">gu</span></td><td><span class="kana">げ</span><span class="rom2">ge</span></td><td><span class="kana">ご</span><span class="rom2">go</span></td></tr>
+    <tr><td>z</td><td><span class="kana">ざ</span><span class="rom2">za</span></td><td><span class="kana">じ</span><span class="rom2">ji</span></td><td><span class="kana">ず</span><span class="rom2">zu</span></td><td><span class="kana">ぜ</span><span class="rom2">ze</span></td><td><span class="kana">ぞ</span><span class="rom2">zo</span></td></tr>
+    <tr><td>d</td><td><span class="kana">だ</span><span class="rom2">da</span></td><td><span class="kana">ぢ</span><span class="rom2">ji</span></td><td><span class="kana">づ</span><span class="rom2">zu</span></td><td><span class="kana">で</span><span class="rom2">de</span></td><td><span class="kana">ど</span><span class="rom2">do</span></td></tr>
+    <tr><td>b</td><td><span class="kana">ば</span><span class="rom2">ba</span></td><td><span class="kana">び</span><span class="rom2">bi</span></td><td><span class="kana">ぶ</span><span class="rom2">bu</span></td><td><span class="kana">べ</span><span class="rom2">be</span></td><td><span class="kana">ぼ</span><span class="rom2">bo</span></td></tr>
+    <tr><td>p</td><td><span class="kana">ぱ</span><span class="rom2">pa</span></td><td><span class="kana">ぴ</span><span class="rom2">pi</span></td><td><span class="kana">ぷ</span><span class="rom2">pu</span></td><td><span class="kana">ぺ</span><span class="rom2">pe</span></td><td><span class="kana">ぽ</span><span class="rom2">po</span></td></tr>
+  </table>
+
+  <h3>Combo Characters (拗音)</h3>
+  <div class="card-grid">
+    <div class="card"><div class="jp">きゃ</div><div class="rom">kya</div></div>
+    <div class="card"><div class="jp">きゅ</div><div class="rom">kyu</div></div>
+    <div class="card"><div class="jp">きょ</div><div class="rom">kyo</div></div>
+    <div class="card"><div class="jp">しゃ</div><div class="rom">sha</div></div>
+    <div class="card"><div class="jp">しゅ</div><div class="rom">shu</div></div>
+    <div class="card"><div class="jp">しょ</div><div class="rom">sho</div></div>
+    <div class="card"><div class="jp">ちゃ</div><div class="rom">cha</div></div>
+    <div class="card"><div class="jp">ちゅ</div><div class="rom">chu</div></div>
+    <div class="card"><div class="jp">ちょ</div><div class="rom">cho</div></div>
+    <div class="card"><div class="jp">にゃ</div><div class="rom">nya</div></div>
+    <div class="card"><div class="jp">にゅ</div><div class="rom">nyu</div></div>
+    <div class="card"><div class="jp">にょ</div><div class="rom">nyo</div></div>
+    <div class="card"><div class="jp">ひゃ</div><div class="rom">hya</div></div>
+    <div class="card"><div class="jp">ひゅ</div><div class="rom">hyu</div></div>
+    <div class="card"><div class="jp">ひょ</div><div class="rom">hyo</div></div>
+    <div class="card"><div class="jp">みゃ</div><div class="rom">mya</div></div>
+    <div class="card"><div class="jp">みゅ</div><div class="rom">myu</div></div>
+    <div class="card"><div class="jp">みょ</div><div class="rom">myo</div></div>
+    <div class="card"><div class="jp">りゃ</div><div class="rom">rya</div></div>
+    <div class="card"><div class="jp">りゅ</div><div class="rom">ryu</div></div>
+    <div class="card"><div class="jp">りょ</div><div class="rom">ryo</div></div>
+    <div class="card"><div class="jp">ぎゃ</div><div class="rom">gya</div></div>
+    <div class="card"><div class="jp">じゃ</div><div class="rom">ja</div></div>
+    <div class="card"><div class="jp">びゃ</div><div class="rom">bya</div></div>
+    <div class="card"><div class="jp">ぴゃ</div><div class="rom">pya</div></div>
+  </div>
+</div>
+
+<!-- KATAKANA -->
+<div class="section" id="katakana">
+  <h2>ア Katakana — Complete Chart</h2>
+  <div class="tip-box">
+    <h4>💡 Katakana Trick</h4>
+    <p>Katakana is mostly used for foreign words. Practice by reading menus and brand names! テレビ (terebi) = TV, コーヒー (kōhī) = coffee, バス (basu) = bus. Note the long vowel mark ー extends a vowel sound.</p>
+  </div>
+  <table class="katakana-table">
+    <tr><th></th><th>a</th><th>i</th><th>u</th><th>e</th><th>o</th></tr>
+    <tr><td>—</td><td><span class="kana">ア</span><span class="rom2">a</span></td><td><span class="kana">イ</span><span class="rom2">i</span></td><td><span class="kana">ウ</span><span class="rom2">u</span></td><td><span class="kana">エ</span><span class="rom2">e</span></td><td><span class="kana">オ</span><span class="rom2">o</span></td></tr>
+    <tr><td>k</td><td><span class="kana">カ</span><span class="rom2">ka</span></td><td><span class="kana">キ</span><span class="rom2">ki</span></td><td><span class="kana">ク</span><span class="rom2">ku</span></td><td><span class="kana">ケ</span><span class="rom2">ke</span></td><td><span class="kana">コ</span><span class="rom2">ko</span></td></tr>
+    <tr><td>s</td><td><span class="kana">サ</span><span class="rom2">sa</span></td><td><span class="kana">シ</span><span class="rom2">shi</span></td><td><span class="kana">ス</span><span class="rom2">su</span></td><td><span class="kana">セ</span><span class="rom2">se</span></td><td><span class="kana">ソ</span><span class="rom2">so</span></td></tr>
+    <tr><td>t</td><td><span class="kana">タ</span><span class="rom2">ta</span></td><td><span class="kana">チ</span><span class="rom2">chi</span></td><td><span class="kana">ツ</span><span class="rom2">tsu</span></td><td><span class="kana">テ</span><span class="rom2">te</span></td><td><span class="kana">ト</span><span class="rom2">to</span></td></tr>
+    <tr><td>n</td><td><span class="kana">ナ</span><span class="rom2">na</span></td><td><span class="kana">ニ</span><span class="rom2">ni</span></td><td><span class="kana">ヌ</span><span class="rom2">nu</span></td><td><span class="kana">ネ</span><span class="rom2">ne</span></td><td><span class="kana">ノ</span><span class="rom2">no</span></td></tr>
+    <tr><td>h</td><td><span class="kana">ハ</span><span class="rom2">ha</span></td><td><span class="kana">ヒ</span><span class="rom2">hi</span></td><td><span class="kana">フ</span><span class="rom2">fu</span></td><td><span class="kana">ヘ</span><span class="rom2">he</span></td><td><span class="kana">ホ</span><span class="rom2">ho</span></td></tr>
+    <tr><td>m</td><td><span class="kana">マ</span><span class="rom2">ma</span></td><td><span class="kana">ミ</span><span class="rom2">mi</span></td><td><span class="kana">ム</span><span class="rom2">mu</span></td><td><span class="kana">メ</span><span class="rom2">me</span></td><td><span class="kana">モ</span><span class="rom2">mo</span></td></tr>
+    <tr><td>y</td><td><span class="kana">ヤ</span><span class="rom2">ya</span></td><td></td><td><span class="kana">ユ</span><span class="rom2">yu</span></td><td></td><td><span class="kana">ヨ</span><span class="rom2">yo</span></td></tr>
+    <tr><td>r</td><td><span class="kana">ラ</span><span class="rom2">ra</span></td><td><span class="kana">リ</span><span class="rom2">ri</span></td><td><span class="kana">ル</span><span class="rom2">ru</span></td><td><span class="kana">レ</span><span class="rom2">re</span></td><td><span class="kana">ロ</span><span class="rom2">ro</span></td></tr>
+    <tr><td>w</td><td><span class="kana">ワ</span><span class="rom2">wa</span></td><td></td><td></td><td></td><td><span class="kana">ヲ</span><span class="rom2">wo</span></td></tr>
+    <tr><td>n</td><td><span class="kana">ン</span><span class="rom2">n</span></td><td></td><td></td><td></td><td></td></tr>
+  </table>
+  <h3>Common Katakana Loanwords to Practice</h3>
+  <div class="vocab-list">
+    <div class="vocab-item"><div class="jp-word">テレビ</div><div class="details"><div class="reading">terebi</div><div class="eng">television</div></div></div>
+    <div class="vocab-item"><div class="jp-word">コーヒー</div><div class="details"><div class="reading">kōhī</div><div class="eng">coffee</div></div></div>
+    <div class="vocab-item"><div class="jp-word">バス</div><div class="details"><div class="reading">basu</div><div class="eng">bus</div></div></div>
+    <div class="vocab-item"><div class="jp-word">レストラン</div><div class="details"><div class="reading">resutoran</div><div class="eng">restaurant</div></div></div>
+    <div class="vocab-item"><div class="jp-word">パン</div><div class="details"><div class="reading">pan</div><div class="eng">bread</div></div></div>
+    <div class="vocab-item"><div class="jp-word">ビール</div><div class="details"><div class="reading">bīru</div><div class="eng">beer</div></div></div>
+    <div class="vocab-item"><div class="jp-word">アイスクリーム</div><div class="details"><div class="reading">aisukurīmu</div><div class="eng">ice cream</div></div></div>
+    <div class="vocab-item"><div class="jp-word">コンビニ</div><div class="details"><div class="reading">konbini</div><div class="eng">convenience store</div></div></div>
+  </div>
+</div>
+
+<!-- KANJI -->
+<div class="section" id="kanji">
+  <h2>漢 All 103 N5 Kanji</h2>
+  <div class="tip-box">
+    <h4>💡 How to Study Kanji</h4>
+    <p>For each kanji learn: the meaning, ON reading (音読み, Chinese-origin, usually used in compound words), and KUN reading (訓読み, Japanese-origin, usually when alone). Write the stroke order. Learn kanji IN context with vocabulary words!</p>
+  </div>
+  <p style="color:#9ca3af;margin-bottom:15px;font-size:0.9rem;">Click any card to see details. ON = orange, KUN = green</p>
+  
+  <h3>Numbers & Time (数字・時間)</h3>
+  <div class="card-grid">
+    <div class="card"><div class="jp">一</div><div class="meaning">one</div><div class="on">ON: イチ</div><div class="kun">KUN: ひと-</div></div>
+    <div class="card"><div class="jp">二</div><div class="meaning">two</div><div class="on">ON: ニ</div><div class="kun">KUN: ふた-</div></div>
+    <div class="card"><div class="jp">三</div><div class="meaning">three</div><div class="on">ON: サン</div><div class="kun">KUN: み-</div></div>
+    <div class="card"><div class="jp">四</div><div class="meaning">four</div><div class="on">ON: シ</div><div class="kun">KUN: よ-、よん</div></div>
+    <div class="card"><div class="jp">五</div><div class="meaning">five</div><div class="on">ON: ゴ</div><div class="kun">KUN: いつ-</div></div>
+    <div class="card"><div class="jp">六</div><div class="meaning">six</div><div class="on">ON: ロク</div><div class="kun">KUN: む-</div></div>
+    <div class="card"><div class="jp">七</div><div class="meaning">seven</div><div class="on">ON: シチ</div><div class="kun">KUN: なな-</div></div>
+    <div class="card"><div class="jp">八</div><div class="meaning">eight</div><div class="on">ON: ハチ</div><div class="kun">KUN: や-</div></div>
+    <div class="card"><div class="jp">九</div><div class="meaning">nine</div><div class="on">ON: ク、キュウ</div><div class="kun">KUN: ここの-</div></div>
+    <div class="card"><div class="jp">十</div><div class="meaning">ten</div><div class="on">ON: ジュウ</div><div class="kun">KUN: とお</div></div>
+    <div class="card"><div class="jp">百</div><div class="meaning">hundred</div><div class="on">ON: ヒャク</div><div class="kun">KUN: —</div></div>
+    <div class="card"><div class="jp">千</div><div class="meaning">thousand</div><div class="on">ON: セン</div><div class="kun">KUN: ち</div></div>
+    <div class="card"><div class="jp">万</div><div class="meaning">ten thousand</div><div class="on">ON: マン、バン</div><div class="kun">KUN: —</div></div>
+    <div class="card"><div class="jp">年</div><div class="meaning">year</div><div class="on">ON: ネン</div><div class="kun">KUN: とし</div></div>
+    <div class="card"><div class="jp">月</div><div class="meaning">moon/month</div><div class="on">ON: ゲツ、ガツ</div><div class="kun">KUN: つき</div></div>
+    <div class="card"><div class="jp">日</div><div class="meaning">sun/day</div><div class="on">ON: ニチ、ジツ</div><div class="kun">KUN: ひ、か</div></div>
+    <div class="card"><div class="jp">時</div><div class="meaning">time/hour</div><div class="on">ON: ジ</div><div class="kun">KUN: とき</div></div>
+    <div class="card"><div class="jp">分</div><div class="meaning">minute/part</div><div class="on">ON: フン、ブン</div><div class="kun">KUN: わか-</div></div>
+    <div class="card"><div class="jp">半</div><div class="meaning">half</div><div class="on">ON: ハン</div><div class="kun">KUN: なか-</div></div>
+  </div>
+
+  <h3>People & Family (人・家族)</h3>
+  <div class="card-grid">
+    <div class="card"><div class="jp">人</div><div class="meaning">person</div><div class="on">ON: ジン、ニン</div><div class="kun">KUN: ひと</div></div>
+    <div class="card"><div class="jp">女</div><div class="meaning">woman</div><div class="on">ON: ジョ、ニョ</div><div class="kun">KUN: おんな</div></div>
+    <div class="card"><div class="jp">男</div><div class="meaning">man</div><div class="on">ON: ダン、ナン</div><div class="kun">KUN: おとこ</div></div>
+    <div class="card"><div class="jp">子</div><div class="meaning">child</div><div class="on">ON: シ、ス</div><div class="kun">KUN: こ</div></div>
+    <div class="card"><div class="jp">父</div><div class="meaning">father</div><div class="on">ON: フ</div><div class="kun">KUN: ちち</div></div>
+    <div class="card"><div class="jp">母</div><div class="meaning">mother</div><div class="on">ON: ボ</div><div class="kun">KUN: はは</div></div>
+    <div class="card"><div class="jp">友</div><div class="meaning">friend</div><div class="on">ON: ユウ</div><div class="kun">KUN: とも</div></div>
+    <div class="card"><div class="jp">先</div><div class="meaning">ahead/teacher</div><div class="on">ON: セン</div><div class="kun">KUN: さき</div></div>
+    <div class="card"><div class="jp">生</div><div class="meaning">life/birth</div><div class="on">ON: セイ、ショウ</div><div class="kun">KUN: いき、うまれ</div></div>
+    <div class="card"><div class="jp">学</div><div class="meaning">study/learn</div><div class="on">ON: ガク</div><div class="kun">KUN: まな-</div></div>
+  </div>
+
+  <h3>Nature & Environment (自然・環境)</h3>
+  <div class="card-grid">
+    <div class="card"><div class="jp">山</div><div class="meaning">mountain</div><div class="on">ON: サン</div><div class="kun">KUN: やま</div></div>
+    <div class="card"><div class="jp">川</div><div class="meaning">river</div><div class="on">ON: セン</div><div class="kun">KUN: かわ</div></div>
+    <div class="card"><div class="jp">木</div><div class="meaning">tree/wood</div><div class="on">ON: モク、ボク</div><div class="kun">KUN: き</div></div>
+    <div class="card"><div class="jp">林</div><div class="meaning">grove</div><div class="on">ON: リン</div><div class="kun">KUN: はやし</div></div>
+    <div class="card"><div class="jp">森</div><div class="meaning">forest</div><div class="on">ON: シン</div><div class="kun">KUN: もり</div></div>
+    <div class="card"><div class="jp">花</div><div class="meaning">flower</div><div class="on">ON: カ</div><div class="kun">KUN: はな</div></div>
+    <div class="card"><div class="jp">空</div><div class="meaning">sky/empty</div><div class="on">ON: クウ</div><div class="kun">KUN: そら、あき</div></div>
+    <div class="card"><div class="jp">雨</div><div class="meaning">rain</div><div class="on">ON: ウ</div><div class="kun">KUN: あめ</div></div>
+    <div class="card"><div class="jp">水</div><div class="meaning">water</div><div class="on">ON: スイ</div><div class="kun">KUN: みず</div></div>
+    <div class="card"><div class="jp">火</div><div class="meaning">fire</div><div class="on">ON: カ</div><div class="kun">KUN: ひ</div></div>
+    <div class="card"><div class="jp">土</div><div class="meaning">earth/soil</div><div class="on">ON: ド、ト</div><div class="kun">KUN: つち</div></div>
+    <div class="card"><div class="jp">石</div><div class="meaning">stone</div><div class="on">ON: セキ</div><div class="kun">KUN: いし</div></div>
+    <div class="card"><div class="jp">魚</div><div class="meaning">fish</div><div class="on">ON: ギョ</div><div class="kun">KUN: さかな</div></div>
+    <div class="card"><div class="jp">犬</div><div class="meaning">dog</div><div class="on">ON: ケン</div><div class="kun">KUN: いぬ</div></div>
+    <div class="card"><div class="jp">猫</div><div class="meaning">cat</div><div class="on">ON: ビョウ</div><div class="kun">KUN: ねこ</div></div>
+    <div class="card"><div class="jp">鳥</div><div class="meaning">bird</div><div class="on">ON: チョウ</div><div class="kun">KUN: とり</div></div>
+    <div class="card"><div class="jp">虫</div><div class="meaning">insect</div><div class="on">ON: チュウ</div><div class="kun">KUN: むし</div></div>
+  </div>
+
+  <h3>Places & Direction (場所・方向)</h3>
+  <div class="card-grid">
+    <div class="card"><div class="jp">上</div><div class="meaning">above/up</div><div class="on">ON: ジョウ</div><div class="kun">KUN: うえ、あが-</div></div>
+    <div class="card"><div class="jp">下</div><div class="meaning">below/down</div><div class="on">ON: カ、ゲ</div><div class="kun">KUN: した、さが-</div></div>
+    <div class="card"><div class="jp">中</div><div class="meaning">middle/inside</div><div class="on">ON: チュウ</div><div class="kun">KUN: なか</div></div>
+    <div class="card"><div class="jp">外</div><div class="meaning">outside</div><div class="on">ON: ガイ、ゲ</div><div class="kun">KUN: そと</div></div>
+    <div class="card"><div class="jp">右</div><div class="meaning">right</div><div class="on">ON: ウ、ユウ</div><div class="kun">KUN: みぎ</div></div>
+    <div class="card"><div class="jp">左</div><div class="meaning">left</div><div class="on">ON: サ</div><div class="kun">KUN: ひだり</div></div>
+    <div class="card"><div class="jp">東</div><div class="meaning">east</div><div class="on">ON: トウ</div><div class="kun">KUN: ひがし</div></div>
+    <div class="card"><div class="jp">西</div><div class="meaning">west</div><div class="on">ON: セイ、サイ</div><div class="kun">KUN: にし</div></div>
+    <div class="card"><div class="jp">南</div><div class="meaning">south</div><div class="on">ON: ナン、ナ</div><div class="kun">KUN: みなみ</div></div>
+    <div class="card"><div class="jp">北</div><div class="meaning">north</div><div class="on">ON: ホク</div><div class="kun">KUN: きた</div></div>
+    <div class="card"><div class="jp">国</div><div class="meaning">country</div><div class="on">ON: コク</div><div class="kun">KUN: くに</div></div>
+    <div class="card"><div class="jp">町</div><div class="meaning">town</div><div class="on">ON: チョウ</div><div class="kun">KUN: まち</div></div>
+    <div class="card"><div class="jp">村</div><div class="meaning">village</div><div class="on">ON: ソン</div><div class="kun">KUN: むら</div></div>
+    <div class="card"><div class="jp">店</div><div class="meaning">shop/store</div><div class="on">ON: テン</div><div class="kun">KUN: みせ</div></div>
+    <div class="card"><div class="jp">道</div><div class="meaning">road/way</div><div class="on">ON: ドウ</div><div class="kun">KUN: みち</div></div>
+    <div class="card"><div class="jp">門</div><div class="meaning">gate</div><div class="on">ON: モン</div><div class="kun">KUN: かど</div></div>
+    <div class="card"><div class="jp">口</div><div class="meaning">mouth/exit</div><div class="on">ON: コウ、ク</div><div class="kun">KUN: くち</div></div>
+    <div class="card"><div class="jp">入</div><div class="meaning">enter</div><div class="on">ON: ニュウ</div><div class="kun">KUN: い-、はい-</div></div>
+    <div class="card"><div class="jp">出</div><div class="meaning">exit/come out</div><div class="on">ON: シュツ、スイ</div><div class="kun">KUN: で-</div></div>
+  </div>
+
+  <h3>Body Parts (体の部位)</h3>
+  <div class="card-grid">
+    <div class="card"><div class="jp">手</div><div class="meaning">hand</div><div class="on">ON: シュ</div><div class="kun">KUN: て</div></div>
+    <div class="card"><div class="jp">足</div><div class="meaning">leg/foot</div><div class="on">ON: ソク</div><div class="kun">KUN: あし</div></div>
+    <div class="card"><div class="jp">目</div><div class="meaning">eye</div><div class="on">ON: モク、ボク</div><div class="kun">KUN: め</div></div>
+    <div class="card"><div class="jp">耳</div><div class="meaning">ear</div><div class="on">ON: ジ</div><div class="kun">KUN: みみ</div></div>
+    <div class="card"><div class="jp">頭</div><div class="meaning">head</div><div class="on">ON: ズ、ト</div><div class="kun">KUN: あたま</div></div>
+  </div>
+
+  <h3>Actions & Verbs (動詞)</h3>
+  <div class="card-grid">
+    <div class="card"><div class="jp">食</div><div class="meaning">eat/food</div><div class="on">ON: ショク</div><div class="kun">KUN: た-</div></div>
+    <div class="card"><div class="jp">飲</div><div class="meaning">drink</div><div class="on">ON: イン</div><div class="kun">KUN: の-</div></div>
+    <div class="card"><div class="jp">見</div><div class="meaning">see/look</div><div class="on">ON: ケン</div><div class="kun">KUN: み-</div></div>
+    <div class="card"><div class="jp">聞</div><div class="meaning">hear/listen</div><div class="on">ON: ブン、モン</div><div class="kun">KUN: き-</div></div>
+    <div class="card"><div class="jp">書</div><div class="meaning">write</div><div class="on">ON: ショ</div><div class="kun">KUN: か-</div></div>
+    <div class="card"><div class="jp">読</div><div class="meaning">read</div><div class="on">ON: ドク</div><div class="kun">KUN: よ-</div></div>
+    <div class="card"><div class="jp">話</div><div class="meaning">speak/story</div><div class="on">ON: ワ</div><div class="kun">KUN: はなし、はな-</div></div>
+    <div class="card"><div class="jp">行</div><div class="meaning">go</div><div class="on">ON: コウ、ギョウ</div><div class="kun">KUN: い-、おこな-</div></div>
+    <div class="card"><div class="jp">来</div><div class="meaning">come</div><div class="on">ON: ライ</div><div class="kun">KUN: く-、き-</div></div>
+    <div class="card"><div class="jp">帰</div><div class="meaning">return</div><div class="on">ON: キ</div><div class="kun">KUN: かえ-</div></div>
+    <div class="card"><div class="jp">買</div><div class="meaning">buy</div><div class="on">ON: バイ</div><div class="kun">KUN: か-</div></div>
+    <div class="card"><div class="jp">立</div><div class="meaning">stand</div><div class="on">ON: リツ</div><div class="kun">KUN: た-</div></div>
+    <div class="card"><div class="jp">休</div><div class="meaning">rest</div><div class="on">ON: キュウ</div><div class="kun">KUN: やす-</div></div>
+    <div class="card"><div class="jp">起</div><div class="meaning">wake up/rise</div><div class="on">ON: キ</div><div class="kun">KUN: お-</div></div>
+    <div class="card"><div class="jp">寝</div><div class="meaning">sleep</div><div class="on">ON: シン</div><div class="kun">KUN: ね-</div></div>
+    <div class="card"><div class="jp">言</div><div class="meaning">say</div><div class="on">ON: ゲン、ゴン</div><div class="kun">KUN: い-</div></div>
+    <div class="card"><div class="jp">使</div><div class="meaning">use</div><div class="on">ON: シ</div><div class="kun">KUN: つか-</div></div>
+    <div class="card"><div class="jp">会</div><div class="meaning">meet/assembly</div><div class="on">ON: カイ、エ</div><div class="kun">KUN: あ-</div></div>
+  </div>
+
+  <h3>Adjectives & Descriptors (形容詞)</h3>
+  <div class="card-grid">
+    <div class="card"><div class="jp">大</div><div class="meaning">big/great</div><div class="on">ON: ダイ、タイ</div><div class="kun">KUN: おお-</div></div>
+    <div class="card"><div class="jp">小</div><div class="meaning">small</div><div class="on">ON: ショウ</div><div class="kun">KUN: ちい-、こ-</div></div>
+    <div class="card"><div class="jp">高</div><div class="meaning">tall/expensive</div><div class="on">ON: コウ</div><div class="kun">KUN: たか-</div></div>
+    <div class="card"><div class="jp">安</div><div class="meaning">cheap/safe</div><div class="on">ON: アン</div><div class="kun">KUN: やす-</div></div>
+    <div class="card"><div class="jp">長</div><div class="meaning">long/leader</div><div class="on">ON: チョウ</div><div class="kun">KUN: なが-</div></div>
+    <div class="card"><div class="jp">短</div><div class="meaning">short</div><div class="on">ON: タン</div><div class="kun">KUN: みじか-</div></div>
+    <div class="card"><div class="jp">新</div><div class="meaning">new</div><div class="on">ON: シン</div><div class="kun">KUN: あたら-</div></div>
+    <div class="card"><div class="jp">古</div><div class="meaning">old</div><div class="on">ON: コ</div><div class="kun">KUN: ふる-</div></div>
+    <div class="card"><div class="jp">白</div><div class="meaning">white</div><div class="on">ON: ハク、ビャク</div><div class="kun">KUN: しろ</div></div>
+    <div class="card"><div class="jp">黒</div><div class="meaning">black</div><div class="on">ON: コク</div><div class="kun">KUN: くろ</div></div>
+    <div class="card"><div class="jp">赤</div><div class="meaning">red</div><div class="on">ON: セキ</div><div class="kun">KUN: あか</div></div>
+    <div class="card"><div class="jp">青</div><div class="meaning">blue/green</div><div class="on">ON: セイ、ショウ</div><div class="kun">KUN: あお</div></div>
+  </div>
+
+  <h3>Misc & School (その他・学校)</h3>
+  <div class="card-grid">
+    <div class="card"><div class="jp">語</div><div class="meaning">language/word</div><div class="on">ON: ゴ</div><div class="kun">KUN: かた-</div></div>
+    <div class="card"><div class="jp">字</div><div class="meaning">character/letter</div><div class="on">ON: ジ</div><div class="kun">KUN: あざ</div></div>
+    <div class="card"><div class="jp">文</div><div class="meaning">writing/sentence</div><div class="on">ON: ブン、モン</div><div class="kun">KUN: ふみ</div></div>
+    <div class="card"><div class="jp">校</div><div class="meaning">school</div><div class="on">ON: コウ</div><div class="kun">KUN: —</div></div>
+    <div class="card"><div class="jp">本</div><div class="meaning">book/origin</div><div class="on">ON: ホン</div><div class="kun">KUN: もと</div></div>
+    <div class="card"><div class="jp">名</div><div class="meaning">name/famous</div><div class="on">ON: メイ、ミョウ</div><div class="kun">KUN: な</div></div>
+    <div class="card"><div class="jp">何</div><div class="meaning">what</div><div class="on">ON: カ</div><div class="kun">KUN: なに、なん</div></div>
+    <div class="card"><div class="jp">円</div><div class="meaning">yen/circle</div><div class="on">ON: エン</div><div class="kun">KUN: まる-</div></div>
+    <div class="card"><div class="jp">電</div><div class="meaning">electricity</div><div class="on">ON: デン</div><div class="kun">KUN: —</div></div>
+    <div class="card"><div class="jp">車</div><div class="meaning">car/vehicle</div><div class="on">ON: シャ</div><div class="kun">KUN: くるま</div></div>
+    <div class="card"><div class="jp">気</div><div class="meaning">spirit/energy</div><div class="on">ON: キ、ケ</div><div class="kun">KUN: —</div></div>
+    <div class="card"><div class="jp">天</div><div class="meaning">heaven/sky</div><div class="on">ON: テン</div><div class="kun">KUN: あめ</div></div>
+    <div class="card"><div class="jp">毎</div><div class="meaning">every</div><div class="on">ON: マイ</div><div class="kun">KUN: —</div></div>
+    <div class="card"><div class="jp">今</div><div class="meaning">now</div><div class="on">ON: コン、キン</div><div class="kun">KUN: いま</div></div>
+    <div class="card"><div class="jp">前</div><div class="meaning">before/front</div><div class="on">ON: ゼン</div><div class="kun">KUN: まえ</div></div>
+    <div class="card"><div class="jp">後</div><div class="meaning">after/behind</div><div class="on">ON: ゴ、コウ</div><div class="kun">KUN: うしろ、あと</div></div>
+    <div class="card"><div class="jp">午</div><div class="meaning">noon</div><div class="on">ON: ゴ</div><div class="kun">KUN: —</div></div>
+    <div class="card"><div class="jp">週</div><div class="meaning">week</div><div class="on">ON: シュウ</div><div class="kun">KUN: —</div></div>
+  </div>
+</div>
+
+<!-- VOCABULARY -->
+<div class="section" id="vocab">
+  <h2>📚 Core N5 Vocabulary by Category</h2>
+  <div class="tip-box">
+    <h4>💡 Vocabulary Strategy</h4>
+    <p>Learn 10-15 words per day. Always learn the word + reading + meaning + a sample sentence. Use spaced repetition (Anki) to review efficiently. Prioritize high-frequency words first.</p>
+  </div>
+
+  <h3>🙋 Greetings & Basics (挨拶)</h3>
+  <div class="vocab-list">
+    <div class="vocab-item"><div class="jp-word">おはよう</div><div class="details"><div class="reading">ohayou</div><div class="eng">Good morning (casual)</div><span class="type">Expression</span></div></div>
+    <div class="vocab-item"><div class="jp-word">こんにちは</div><div class="details"><div class="reading">konnichiwa</div><div class="eng">Hello / Good afternoon</div><span class="type">Expression</span></div></div>
+    <div class="vocab-item"><div class="jp-word">こんばんは</div><div class="details"><div class="reading">konbanwa</div><div class="eng">Good evening</div><span class="type">Expression</span></div></div>
+    <div class="vocab-item"><div class="jp-word">さようなら</div><div class="details"><div class="reading">sayounara</div><div class="eng">Goodbye</div><span class="type">Expression</span></div></div>
+    <div class="vocab-item"><div class="jp-word">ありがとう</div><div class="details"><div class="reading">arigatou</div><div class="eng">Thank you (casual)</div><span class="type">Expression</span></div></div>
+    <div class="vocab-item"><div class="jp-word">すみません</div><div class="details"><div class="reading">sumimasen</div><div class="eng">Excuse me / I'm sorry</div><span class="type">Expression</span></div></div>
+    <div class="vocab-item"><div class="jp-word">はい / いいえ</div><div class="details"><div class="reading">hai / iie</div><div class="eng">Yes / No</div><span class="type">Expression</span></div></div>
+    <div class="vocab-item"><div class="jp-word">どうぞ</div><div class="details"><div class="reading">douzo</div><div class="eng">Please (offering)</div><span class="type">Expression</span></div></div>
+    <div class="vocab-item"><div class="jp-word">おやすみ</div><div class="details"><div class="reading">oyasumi</div><div class="eng">Good night</div><span class="type">Expression</span></div></div>
+    <div class="vocab-item"><div class="jp-word">どういたしまして</div><div class="details"><div class="reading">douitashimashite</div><div class="eng">You're welcome</div><span class="type">Expression</span></div></div>
+  </div>
+
+  <h3>🔢 Numbers (数字)</h3>
+  <div class="vocab-list">
+    <div class="vocab-item"><div class="jp-word">れい / ゼロ</div><div class="details"><div class="reading">rei / zero</div><div class="eng">0</div><span class="type">Number</span></div></div>
+    <div class="vocab-item"><div class="jp-word">いち・に・さん</div><div class="details"><div class="reading">ichi / ni / san</div><div class="eng">1 / 2 / 3</div><span class="type">Number</span></div></div>
+    <div class="vocab-item"><div class="jp-word">し / よん</div><div class="details"><div class="reading">shi / yon</div><div class="eng">4 (both used)</div><span class="type">Number</span></div></div>
+    <div class="vocab-item"><div class="jp-word">ご・ろく・しち/なな</div><div class="details"><div class="reading">go / roku / shichi/nana</div><div class="eng">5 / 6 / 7</div><span class="type">Number</span></div></div>
+    <div class="vocab-item"><div class="jp-word">はち・く/きゅう・じゅう</div><div class="details"><div class="reading">hachi / ku/kyuu / juu</div><div class="eng">8 / 9 / 10</div><span class="type">Number</span></div></div>
+    <div class="vocab-item"><div class="jp-word">ひゃく・せん・まん</div><div class="details"><div class="reading">hyaku / sen / man</div><div class="eng">100 / 1,000 / 10,000</div><span class="type">Number</span></div></div>
+  </div>
+
+  <h3>🕐 Time Words (時間の言葉)</h3>
+  <div class="vocab-list">
+    <div class="vocab-item"><div class="jp-word">いま</div><div class="details"><div class="reading">ima</div><div class="eng">now</div><span class="type">Time</span></div></div>
+    <div class="vocab-item"><div class="jp-word">きょう</div><div class="details"><div class="reading">kyou</div><div class="eng">today</div><span class="type">Time</span></div></div>
+    <div class="vocab-item"><div class="jp-word">あした</div><div class="details"><div class="reading">ashita</div><div class="eng">tomorrow</div><span class="type">Time</span></div></div>
+    <div class="vocab-item"><div class="jp-word">きのう</div><div class="details"><div class="reading">kinou</div><div class="eng">yesterday</div><span class="type">Time</span></div></div>
+    <div class="vocab-item"><div class="jp-word">まいにち</div><div class="details"><div class="reading">mainichi</div><div class="eng">every day</div><span class="type">Time</span></div></div>
+    <div class="vocab-item"><div class="jp-word">ごぜん / ごご</div><div class="details"><div class="reading">gozen / gogo</div><div class="eng">AM / PM</div><span class="type">Time</span></div></div>
+    <div class="vocab-item"><div class="jp-word">〜じ 〜ふん</div><div class="details"><div class="reading">~ji ~fun</div><div class="eng">~o'clock ~minutes</div><span class="type">Time</span></div></div>
+    <div class="vocab-item"><div class="jp-word">げつようび</div><div class="details"><div class="reading">getsuyoubi</div><div class="eng">Monday</div><span class="type">Time</span></div></div>
+    <div class="vocab-item"><div class="jp-word">かようび</div><div class="details"><div class="reading">kayoubi</div><div class="eng">Tuesday</div><span class="type">Time</span></div></div>
+    <div class="vocab-item"><div class="jp-word">すいようび</div><div class="details"><div class="reading">suiyoubi</div><div class="eng">Wednesday</div><span class="type">Time</span></div></div>
+    <div class="vocab-item"><div class="jp-word">もくようび</div><div class="details"><div class="reading">mokuyoubi</div><div class="eng">Thursday</div><span class="type">Time</span></div></div>
+    <div class="vocab-item"><div class="jp-word">きんようび</div><div class="details"><div class="reading">kinyoubi</div><div class="eng">Friday</div><span class="type">Time</span></div></div>
+    <div class="vocab-item"><div class="jp-word">どようび</div><div class="details"><div class="reading">doyoubi</div><div class="eng">Saturday</div><span class="type">Time</span></div></div>
+    <div class="vocab-item"><div class="jp-word">にちようび</div><div class="details"><div class="reading">nichiyoubi</div><div class="eng">Sunday</div><span class="type">Time</span></div></div>
+  </div>
+
+  <h3>🍜 Food & Drink (食べ物・飲み物)</h3>
+  <div class="vocab-list">
+    <div class="vocab-item"><div class="jp-word">ごはん</div><div class="details"><div class="reading">gohan</div><div class="eng">rice / meal</div><span class="type">Noun</span></div></div>
+    <div class="vocab-item"><div class="jp-word">みず</div><div class="details"><div class="reading">mizu</div><div class="eng">water</div><span class="type">Noun</span></div></div>
+    <div class="vocab-item"><div class="jp-word">おちゃ</div><div class="details"><div class="reading">ocha</div><div class="eng">green tea</div><span class="type">Noun</span></div></div>
+    <div class="vocab-item"><div class="jp-word">さかな</div><div class="details"><div class="reading">sakana</div><div class="eng">fish</div><span class="type">Noun</span></div></div>
+    <div class="vocab-item"><div class="jp-word">にく</div><div class="details"><div class="reading">niku</div><div class="eng">meat</div><span class="type">Noun</span></div></div>
+    <div class="vocab-item"><div class="jp-word">たまご</div><div class="details"><div class="reading">tamago</div><div class="eng">egg</div><span class="type">Noun</span></div></div>
+    <div class="vocab-item"><div class="jp-word">パン</div><div class="details"><div class="reading">pan</div><div class="eng">bread</div><span class="type">Noun</span></div></div>
+    <div class="vocab-item"><div class="jp-word">くだもの</div><div class="details"><div class="reading">kudamono</div><div class="eng">fruit</div><span class="type">Noun</span></div></div>
+    <div class="vocab-item"><div class="jp-word">やさい</div><div class="details"><div class="reading">yasai</div><div class="eng">vegetables</div><span class="type">Noun</span></div></div>
+    <div class="vocab-item"><div class="jp-word">すし</div><div class="details"><div class="reading">sushi</div><div class="eng">sushi</div><span class="type">Noun</span></div></div>
+  </div>
+
+  <h3>📍 Places (場所)</h3>
+  <div class="vocab-list">
+    <div class="vocab-item"><div class="jp-word">うち / いえ</div><div class="details"><div class="reading">uchi / ie</div><div class="eng">home / house</div><span class="type">Noun</span></div></div>
+    <div class="vocab-item"><div class="jp-word">がっこう</div><div class="details"><div class="reading">gakkou</div><div class="eng">school</div><span class="type">Noun</span></div></div>
+    <div class="vocab-item"><div class="jp-word">びょういん</div><div class="details"><div class="reading">byouin</div><div class="eng">hospital</div><span class="type">Noun</span></div></div>
+    <div class="vocab-item"><div class="jp-word">えき</div><div class="details"><div class="reading">eki</div><div class="eng">train station</div><span class="type">Noun</span></div></div>
+    <div class="vocab-item"><div class="jp-word">ぎんこう</div><div class="details"><div class="reading">ginkou</div><div class="eng">bank</div><span class="type">Noun</span></div></div>
+    <div class="vocab-item"><div class="jp-word">ゆうびんきょく</div><div class="details"><div class="reading">yuubinkyoku</div><div class="eng">post office</div><span class="type">Noun</span></div></div>
+    <div class="vocab-item"><div class="jp-word">スーパー</div><div class="details"><div class="reading">suupaa</div><div class="eng">supermarket</div><span class="type">Noun</span></div></div>
+    <div class="vocab-item"><div class="jp-word">としょかん</div><div class="details"><div class="reading">toshokan</div><div class="eng">library</div><span class="type">Noun</span></div></div>
+  </div>
+
+  <h3>🚶 Verbs (動詞)</h3>
+  <div class="vocab-list">
+    <div class="vocab-item"><div class="jp-word">たべます</div><div class="details"><div class="reading">tabemasu</div><div class="eng">to eat</div><span class="type">Ru-verb</span></div></div>
+    <div class="vocab-item"><div class="jp-word">のみます</div><div class="details"><div class="reading">nomimasu</div><div class="eng">to drink</div><span class="type">U-verb</span></div></div>
+    <div class="vocab-item"><div class="jp-word">いきます</div><div class="details"><div class="reading">ikimasu</div><div class="eng">to go</div><span class="type">U-verb</span></div></div>
+    <div class="vocab-item"><div class="jp-word">きます</div><div class="details"><div class="reading">kimasu</div><div class="eng">to come</div><span class="type">Irregular</span></div></div>
+    <div class="vocab-item"><div class="jp-word">かえります</div><div class="details"><div class="reading">kaerimasu</div><div class="eng">to return home</div><span class="type">U-verb</span></div></div>
+    <div class="vocab-item"><div class="jp-word">みます</div><div class="details"><div class="reading">mimasu</div><div class="eng">to look/watch</div><span class="type">Ru-verb</span></div></div>
+    <div class="vocab-item"><div class="jp-word">ききます</div><div class="details"><div class="reading">kikimasu</div><div class="eng">to listen/hear</div><span class="type">U-verb</span></div></div>
+    <div class="vocab-item"><div class="jp-word">よみます</div><div class="details"><div class="reading">yomimasu</div><div class="eng">to read</div><span class="type">U-verb</span></div></div>
+    <div class="vocab-item"><div class="jp-word">かきます</div><div class="details"><div class="reading">kakimasu</div><div class="eng">to write</div><span class="type">U-verb</span></div></div>
+    <div class="vocab-item"><div class="jp-word">はなします</div><div class="details"><div class="reading">hanashimasu</div><div class="eng">to speak/talk</div><span class="type">U-verb</span></div></div>
+    <div class="vocab-item"><div class="jp-word">かいます</div><div class="details"><div class="reading">kaimasu</div><div class="eng">to buy</div><span class="type">U-verb</span></div></div>
+    <div class="vocab-item"><div class="jp-word">します</div><div class="details"><div class="reading">shimasu</div><div class="eng">to do</div><span class="type">Irregular</span></div></div>
+    <div class="vocab-item"><div class="jp-word">あります</div><div class="details"><div class="reading">arimasu</div><div class="eng">to exist (things)</div><span class="type">U-verb</span></div></div>
+    <div class="vocab-item"><div class="jp-word">います</div><div class="details"><div class="reading">imasu</div><div class="eng">to exist (living)</div><span class="type">Ru-verb</span></div></div>
+    <div class="vocab-item"><div class="jp-word">わかります</div><div class="details"><div class="reading">wakarimasu</div><div class="eng">to understand</div><span class="type">U-verb</span></div></div>
+    <div class="vocab-item"><div class="jp-word">おきます</div><div class="details"><div class="reading">okimasu</div><div class="eng">to wake up</div><span class="type">Ru-verb</span></div></div>
+    <div class="vocab-item"><div class="jp-word">ねます</div><div class="details"><div class="reading">nemasu</div><div class="eng">to sleep</div><span class="type">Ru-verb</span></div></div>
+  </div>
+
+  <h3>🎨 Adjectives (形容詞)</h3>
+  <div class="vocab-list">
+    <div class="vocab-item"><div class="jp-word">おおきい</div><div class="details"><div class="reading">ookii</div><div class="eng">big</div><span class="type">い-adj</span></div></div>
+    <div class="vocab-item"><div class="jp-word">ちいさい</div><div class="details"><div class="reading">chiisai</div><div class="eng">small</div><span class="type">い-adj</span></div></div>
+    <div class="vocab-item"><div class="jp-word">たかい</div><div class="details"><div class="reading">takai</div><div class="eng">tall / expensive</div><span class="type">い-adj</span></div></div>
+    <div class="vocab-item"><div class="jp-word">やすい</div><div class="details"><div class="reading">yasui</div><div class="eng">cheap / easy</div><span class="type">い-adj</span></div></div>
+    <div class="vocab-item"><div class="jp-word">あたらしい</div><div class="details"><div class="reading">atarashii</div><div class="eng">new</div><span class="type">い-adj</span></div></div>
+    <div class="vocab-item"><div class="jp-word">ふるい</div><div class="details"><div class="reading">furui</div><div class="eng">old (objects)</div><span class="type">い-adj</span></div></div>
+    <div class="vocab-item"><div class="jp-word">いい / よい</div><div class="details"><div class="reading">ii / yoi</div><div class="eng">good</div><span class="type">い-adj</span></div></div>
+    <div class="vocab-item"><div class="jp-word">わるい</div><div class="details"><div class="reading">warui</div><div class="eng">bad</div><span class="type">い-adj</span></div></div>
+    <div class="vocab-item"><div class="jp-word">おいしい</div><div class="details"><div class="reading">oishii</div><div class="eng">delicious</div><span class="type">い-adj</span></div></div>
+    <div class="vocab-item"><div class="jp-word">たのしい</div><div class="details"><div class="reading">tanoshii</div><div class="eng">fun / enjoyable</div><span class="type">い-adj</span></div></div>
+    <div class="vocab-item"><div class="jp-word">しずか</div><div class="details"><div class="reading">shizuka</div><div class="eng">quiet</div><span class="type">な-adj</span></div></div>
+    <div class="vocab-item"><div class="jp-word">きれい</div><div class="details"><div class="reading">kirei</div><div class="eng">pretty / clean</div><span class="type">な-adj</span></div></div>
+    <div class="vocab-item"><div class="jp-word">すき</div><div class="details"><div class="reading">suki</div><div class="eng">liked / favorite</div><span class="type">な-adj</span></div></div>
+    <div class="vocab-item"><div class="jp-word">げんき</div><div class="details"><div class="reading">genki</div><div class="eng">healthy / energetic</div><span class="type">な-adj</span></div></div>
+  </div>
+
+  <h3>❓ Question Words (疑問詞)</h3>
+  <div class="vocab-list">
+    <div class="vocab-item"><div class="jp-word">なに / なん</div><div class="details"><div class="reading">nani / nan</div><div class="eng">what</div><span class="type">Pronoun</span></div></div>
+    <div class="vocab-item"><div class="jp-word">どこ</div><div class="details"><div class="reading">doko</div><div class="eng">where</div><span class="type">Pronoun</span></div></div>
+    <div class="vocab-item"><div class="jp-word">だれ</div><div class="details"><div class="reading">dare</div><div class="eng">who</div><span class="type">Pronoun</span></div></div>
+    <div class="vocab-item"><div class="jp-word">いつ</div><div class="details"><div class="reading">itsu</div><div class="eng">when</div><span class="type">Pronoun</span></div></div>
+    <div class="vocab-item"><div class="jp-word">どうして / なぜ</div><div class="details"><div class="reading">doushite / naze</div><div class="eng">why</div><span class="type">Pronoun</span></div></div>
+    <div class="vocab-item"><div class="jp-word">どう</div><div class="details"><div class="reading">dou</div><div class="eng">how</div><span class="type">Pronoun</span></div></div>
+    <div class="vocab-item"><div class="jp-word">いくら</div><div class="details"><div class="reading">ikura</div><div class="eng">how much</div><span class="type">Pronoun</span></div></div>
+    <div class="vocab-item"><div class="jp-word">いくつ</div><div class="details"><div class="reading">ikutsu</div><div class="eng">how many</div><span class="type">Pronoun</span></div></div>
+  </div>
+</div>
+
+<!-- GRAMMAR -->
+<div class="section" id="grammar">
+  <h2>📝 Essential N5 Grammar Patterns</h2>
+
+  <h3>🧱 Core Sentence Structure</h3>
+  <div class="grammar-box">
+    <div class="pattern">Subject は Predicate。</div>
+    <div class="usage">は (wa) is the topic marker. Japanese is Subject-Object-Verb (SOV) order.</div>
+    <div class="example">
+      <div class="jp-ex">わたしは がくせい です。</div>
+      <div class="rom-ex">Watashi wa gakusei desu.</div>
+      <div class="eng-ex">I am a student.</div>
+    </div>
+  </div>
+
+  <h3>⚓ Particles (助詞)</h3>
+  <div class="grammar-box">
+    <div class="pattern">は (wa) — Topic Marker</div>
+    <div class="usage">Marks the topic of the sentence. Pronounced "wa" not "ha".</div>
+    <div class="example"><div class="jp-ex">田中さんは先生です。</div><div class="rom-ex">Tanaka-san wa sensei desu.</div><div class="eng-ex">Mr. Tanaka is a teacher.</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">が (ga) — Subject Marker</div>
+    <div class="usage">Marks the grammatical subject, especially for new information or emphasis.</div>
+    <div class="example"><div class="jp-ex">だれが きましたか？</div><div class="rom-ex">Dare ga kimashita ka?</div><div class="eng-ex">Who came?</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">を (wo/o) — Object Marker</div>
+    <div class="usage">Marks the direct object of the verb. Pronounced "o".</div>
+    <div class="example"><div class="jp-ex">りんごを たべます。</div><div class="rom-ex">Ringo o tabemasu.</div><div class="eng-ex">I eat an apple.</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">に (ni) — Location / Time / Direction</div>
+    <div class="usage">Marks location of existence, destination, or specific time.</div>
+    <div class="example"><div class="jp-ex">３じに がっこうに いきます。</div><div class="rom-ex">San-ji ni gakkou ni ikimasu.</div><div class="eng-ex">I go to school at 3 o'clock.</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">で (de) — Location of Action / Means</div>
+    <div class="usage">Marks where an action takes place, or the means/tool used.</div>
+    <div class="example"><div class="jp-ex">こうえんで あそびます。</div><div class="rom-ex">Kouen de asobimasu.</div><div class="eng-ex">I play in the park.</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">の (no) — Possessive / Connection</div>
+    <div class="usage">Links nouns. Like 's in English or "of".</div>
+    <div class="example"><div class="jp-ex">わたしの ほん。</div><div class="rom-ex">Watashi no hon.</div><div class="eng-ex">My book.</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">と (to) — And (nouns) / With</div>
+    <div class="usage">Connects nouns ("A and B") or means "together with".</div>
+    <div class="example"><div class="jp-ex">ねことイヌ。 / ともだちとえいがをみます。</div><div class="rom-ex">Neko to inu. / Tomodachi to eiga o mimasu.</div><div class="eng-ex">Cat and dog. / I watch a movie with a friend.</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">も (mo) — Also / Too</div>
+    <div class="usage">Replaces は or が to mean "also" or "too".</div>
+    <div class="example"><div class="jp-ex">わたしも がくせいです。</div><div class="rom-ex">Watashi mo gakusei desu.</div><div class="eng-ex">I am also a student.</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">か (ka) — Question Marker</div>
+    <div class="usage">Added to end of sentence to form a question (no rising intonation needed in formal).</div>
+    <div class="example"><div class="jp-ex">にほんごが わかりますか？</div><div class="rom-ex">Nihongo ga wakarimasu ka?</div><div class="eng-ex">Do you understand Japanese?</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">ね (ne) / よ (yo) — Sentence-Final Particles</div>
+    <div class="usage">ね = seeking agreement ("right?"); よ = asserting information ("you know!")</div>
+    <div class="example"><div class="jp-ex">いいてんきですね。 / これはおいしいですよ！</div><div class="rom-ex">Ii tenki desu ne. / Kore wa oishii desu yo!</div><div class="eng-ex">Nice weather, isn't it? / This is delicious!</div></div>
+  </div>
+
+  <h3>🔄 Verb Conjugation</h3>
+  <div class="grammar-box">
+    <div class="pattern">～ます / ～ません (masu / masen) — Present/Future</div>
+    <div class="usage">Polite present or future. ～ます = affirmative, ～ません = negative.</div>
+    <div class="example"><div class="jp-ex">たべます / たべません</div><div class="rom-ex">tabemasu / tabemasen</div><div class="eng-ex">I eat / I don't eat</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">～ました / ～ませんでした — Past Tense</div>
+    <div class="usage">Polite past tense (affirmative and negative).</div>
+    <div class="example"><div class="jp-ex">きのう えいがをみました。</div><div class="rom-ex">Kinou eiga o mimashita.</div><div class="eng-ex">I watched a movie yesterday.</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">～て います (te imasu) — Ongoing Action</div>
+    <div class="usage">Indicates an action in progress (like English "-ing").</div>
+    <div class="example"><div class="jp-ex">いま べんきょうして います。</div><div class="rom-ex">Ima benkyou shite imasu.</div><div class="eng-ex">I am studying right now.</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">～たいです (tai desu) — Want to do</div>
+    <div class="usage">Express desire to do something. Replace ます with たい.</div>
+    <div class="example"><div class="jp-ex">にほんに いきたいです。</div><div class="rom-ex">Nihon ni ikitai desu.</div><div class="eng-ex">I want to go to Japan.</div></div>
+  </div>
+
+  <h3>🏗️ Key Sentence Patterns</h3>
+  <div class="grammar-box">
+    <div class="pattern">N は N です。— A is B</div>
+    <div class="usage">Basic identity / description sentence.</div>
+    <div class="example"><div class="jp-ex">これは ほんです。</div><div class="rom-ex">Kore wa hon desu.</div><div class="eng-ex">This is a book.</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">N は Adj です。— A is [adjective]</div>
+    <div class="usage">For い-adj: just add です. For な-adj: add な before noun, or です at end.</div>
+    <div class="example"><div class="jp-ex">このほんは おもしろいです。 / あのひとは しずかです。</div><div class="rom-ex">Kono hon wa omoshiroi desu. / Ano hito wa shizuka desu.</div><div class="eng-ex">This book is interesting. / That person is quiet.</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">N1 は N2 に あります / います。— X is in/at Y</div>
+    <div class="usage">あります for inanimate objects, います for people/animals.</div>
+    <div class="example"><div class="jp-ex">ねこは へやに います。/ ほんは つくえの うえに あります。</div><div class="rom-ex">Neko wa heya ni imasu. / Hon wa tsukue no ue ni arimasu.</div><div class="eng-ex">The cat is in the room. / The book is on the desk.</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">～から ～まで — From ~ to ~</div>
+    <div class="usage">Indicates range of time or place.</div>
+    <div class="example"><div class="jp-ex">９じから５じまで はたらきます。</div><div class="rom-ex">Ku-ji kara go-ji made hatarakimasu.</div><div class="eng-ex">I work from 9 to 5.</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">～てから — After doing ~</div>
+    <div class="usage">Action B happens after action A.</div>
+    <div class="example"><div class="jp-ex">ごはんを たべてから、はをみがきます。</div><div class="rom-ex">Gohan o tabete kara, ha o migakimasu.</div><div class="eng-ex">After eating, I brush my teeth.</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">〜ないでください — Please don't ~</div>
+    <div class="usage">Negative request form.</div>
+    <div class="example"><div class="jp-ex">ここで たばこを すわないでください。</div><div class="rom-ex">Koko de tabako o suwanaide kudasai.</div><div class="eng-ex">Please don't smoke here.</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">〜てもいいです — It's okay to ~</div>
+    <div class="usage">Giving permission.</div>
+    <div class="example"><div class="jp-ex">ここに すわってもいいです。</div><div class="rom-ex">Koko ni suwatte mo ii desu.</div><div class="eng-ex">You may sit here.</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">〜てはいけません — Must not ~</div>
+    <div class="usage">Prohibition.</div>
+    <div class="example"><div class="jp-ex">ここで たべてはいけません。</div><div class="rom-ex">Koko de tabete wa ikemasen.</div><div class="eng-ex">You must not eat here.</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">〜が すきです / きらいです — Like / Dislike ~</div>
+    <div class="usage">Express preferences. Use が not を.</div>
+    <div class="example"><div class="jp-ex">わたしは すしが すきです。</div><div class="rom-ex">Watashi wa sushi ga suki desu.</div><div class="eng-ex">I like sushi.</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">〜が できます — Can do ~</div>
+    <div class="usage">Express ability.</div>
+    <div class="example"><div class="jp-ex">にほんごが すこし できます。</div><div class="rom-ex">Nihongo ga sukoshi dekimasu.</div><div class="eng-ex">I can speak a little Japanese.</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">Verb て-form + ください — Please do ~</div>
+    <div class="usage">Polite request.</div>
+    <div class="example"><div class="jp-ex">ゆっくり はなしてください。</div><div class="rom-ex">Yukkuri hanashite kudasai.</div><div class="eng-ex">Please speak slowly.</div></div>
+  </div>
+
+  <h3>🎯 Adjective Conjugation</h3>
+  <div class="grammar-box">
+    <div class="pattern">い-adjectives — Conjugation Rules</div>
+    <div class="usage">い-adj: present (+い), negative (-くない), past (-かった), past negative (-くなかった)</div>
+    <div class="example">
+      <div class="jp-ex">たかい → たかくない → たかかった → たかくなかった</div>
+      <div class="rom-ex">takai → takaku nai → takakatta → takaku nakatta</div>
+      <div class="eng-ex">expensive → not expensive → was expensive → wasn't expensive</div>
+    </div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">な-adjectives — Conjugation Rules</div>
+    <div class="usage">な-adj: present (+です), negative (+じゃないです), past (+でした), negative past (+じゃなかったです)</div>
+    <div class="example">
+      <div class="jp-ex">しずかです → しずかじゃないです → しずかでした</div>
+      <div class="rom-ex">shizuka desu → shizuka ja nai desu → shizuka deshita</div>
+      <div class="eng-ex">quiet → not quiet → was quiet</div>
+    </div>
+  </div>
+
+  <h3>🔢 Counters (助数詞)</h3>
+  <div class="grammar-box">
+    <div class="pattern">Common N5 Counters</div>
+    <div class="usage">Japanese uses different counters for different types of objects.</div>
+    <div class="example">
+      <div class="jp-ex">〜まい (flat things): いちまい、にまい | 〜ほん (long things): いっぽん | 〜ひき (small animals): いっぴき | 〜だい (machines): いちだい | 〜にん (people): ひとり、ふたり、さんにん</div>
+      <div class="eng-ex">Sheets/flat: 1 sheet, 2 sheets | Long: 1 (bottle/pen) | Small animals | Machines | People: 1, 2, 3 people</div>
+    </div>
+  </div>
+</div>
+
+<!-- SPEAKING -->
+<div class="section" id="speaking">
+  <h2>🗣️ Speaking & Pronunciation Guide</h2>
+  
+  <div class="tip-box">
+    <h4>🎯 The #1 Speaking Secret</h4>
+    <p>Japanese pronunciation is very consistent — unlike English! Once you know the 5 vowel sounds, you can pronounce almost everything correctly. The vowels never change: あ(a), い(i), う(u), え(e), お(o).</p>
+  </div>
+
+  <h3>🔊 Vowel Sounds (母音)</h3>
+  <div class="grammar-box">
+    <div class="pattern">The 5 Japanese Vowels</div>
+    <div class="usage">These are PURE vowels — held steady, no diphthongs. Short and crisp.</div>
+    <div class="example">
+      <div class="jp-ex">あ = "ah" (father) | い = "ee" (feet, short) | う = "oo" (food, no lip rounding) | え = "eh" (bed) | お = "oh" (boat, short)</div>
+    </div>
+  </div>
+
+  <h3>⚠️ Tricky Sounds</h3>
+  <div class="grammar-box">
+    <div class="pattern">つ (tsu) — No English equivalent</div>
+    <div class="usage">Like the "ts" in "bits" but as a syllable start. Practice: "tsunami."</div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">ら り る れ ろ (R sounds)</div>
+    <div class="usage">Japanese "r" is NOT English R or Spanish R. Tap your tongue lightly behind front teeth — between English L and D. Practice: "ladder" said quickly.</div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">ふ (fu) — Soft F</div>
+    <div class="usage">Blow air through barely parted lips. Not a strong "f" — more like "hu" with f.</div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">Long Vowels (長音)</div>
+    <div class="usage">Holding a vowel twice as long changes meaning! おじさん (uncle) vs おじいさん (grandfather). In katakana marked with ー.</div>
+    <div class="example"><div class="jp-ex">ここ (here) vs こうこう (high school)</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">Double Consonants (促音) っ</div>
+    <div class="usage">Small っ means pause briefly before the next consonant. Like holding your breath for a beat.</div>
+    <div class="example"><div class="jp-ex">きて (please come) vs きって (stamp) — kite vs kitte</div></div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">Pitch Accent (ピッチアクセント)</div>
+    <div class="usage">Japanese uses pitch (high/low) not stress accent. はし can mean chopsticks (ha↑shi↓), bridge (ha↓shi↑), or edge. Context usually clarifies. Don't stress over this for N5!</div>
+  </div>
+
+  <h3>💬 Essential Phrases for Speaking</h3>
+  <div class="vocab-list">
+    <div class="vocab-item"><div class="jp-word" style="font-size:1rem;">もう一度お願いします</div><div class="details"><div class="reading">Mou ichido onegaishimasu</div><div class="eng">Please say it again</div></div></div>
+    <div class="vocab-item"><div class="jp-word" style="font-size:1rem;">ゆっくり話してください</div><div class="details"><div class="reading">Yukkuri hanashite kudasai</div><div class="eng">Please speak slowly</div></div></div>
+    <div class="vocab-item"><div class="jp-word" style="font-size:1rem;">わかりません</div><div class="details"><div class="reading">Wakarimasen</div><div class="eng">I don't understand</div></div></div>
+    <div class="vocab-item"><div class="jp-word" style="font-size:1rem;">日本語が少し話せます</div><div class="details"><div class="reading">Nihongo ga sukoshi hanasemasu</div><div class="eng">I can speak a little Japanese</div></div></div>
+    <div class="vocab-item"><div class="jp-word" style="font-size:1rem;">〜はどこですか？</div><div class="details"><div class="reading">~ wa doko desu ka?</div><div class="eng">Where is ~?</div></div></div>
+    <div class="vocab-item"><div class="jp-word" style="font-size:1rem;">いくらですか？</div><div class="details"><div class="reading">Ikura desu ka?</div><div class="eng">How much is it?</div></div></div>
+    <div class="vocab-item"><div class="jp-word" style="font-size:1rem;">〜をください</div><div class="details"><div class="reading">~ wo kudasai</div><div class="eng">Please give me ~</div></div></div>
+    <div class="vocab-item"><div class="jp-word" style="font-size:1rem;">英語が話せますか？</div><div class="details"><div class="reading">Eigo ga hanasemasu ka?</div><div class="eng">Can you speak English?</div></div></div>
+    <div class="vocab-item"><div class="jp-word" style="font-size:1rem;">おなかがすきました</div><div class="details"><div class="reading">Onaka ga sukimashita</div><div class="eng">I'm hungry</div></div></div>
+    <div class="vocab-item"><div class="jp-word" style="font-size:1rem;">お手洗いはどこですか？</div><div class="details"><div class="reading">Otearai wa doko desu ka?</div><div class="eng">Where is the bathroom?</div></div></div>
+  </div>
+
+  <h3>🗺️ Self-Introduction (自己紹介)</h3>
+  <div class="grammar-box">
+    <div class="pattern">はじめまして。わたしは [Name] です。[Country] から きました。どうぞ よろしく おねがいします。</div>
+    <div class="usage">Standard first-meeting self-introduction</div>
+    <div class="example">
+      <div class="jp-ex">はじめまして。わたしは たろうです。アメリカから きました。どうぞ よろしく おねがいします。</div>
+      <div class="rom-ex">Hajimemashite. Watashi wa Tarou desu. Amerika kara kimashita. Douzo yoroshiku onegaishimasu.</div>
+      <div class="eng-ex">Nice to meet you. I am Tarou. I came from America. I look forward to our relationship.</div>
+    </div>
+  </div>
+
+  <h3>📱 Speaking Practice Methods</h3>
+  <div class="tip-box">
+    <h4>🌟 Best Speaking Practice Techniques</h4>
+    <p>1. <strong>Shadowing</strong>: Listen to native Japanese and repeat immediately, copying intonation.<br>
+    2. <strong>HelloTalk/Tandem</strong>: Find Japanese language exchange partners.<br>
+    3. <strong>iTalki</strong>: Hire a tutor or community teacher for conversation practice.<br>
+    4. <strong>Talk to yourself</strong>: Narrate your daily activities in Japanese.<br>
+    5. <strong>Anime/Drama</strong>: Watch with Japanese subtitles. Repeat phrases you hear.<br>
+    6. <strong>Pimsleur Japanese</strong>: Audio course specifically for speaking and listening.</p>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="section" id="quiz">
+  <h2>🧠 Practice Quiz</h2>
+  <div class="quiz-container">
+    <div style="text-align:center;margin-bottom:20px;">
+      <label style="color:#c4b5fd;margin-right:10px;">Quiz Type:</label>
+      <select id="quizType" style="background:#1e1b4b;color:#e0e0f0;border:1px solid #2d2d5e;padding:8px;border-radius:8px;cursor:pointer;" onchange="initQuiz()">
+        <option value="hiragana">Hiragana Reading</option>
+        <option value="kanji">Kanji Meaning</option>
+        <option value="vocab">Vocabulary</option>
+      </select>
+    </div>
+    <div class="quiz-q">
+      <div class="question" id="quizQuestion">—</div>
+      <div class="hint" id="quizHint">Loading...</div>
+    </div>
+    <div class="quiz-options" id="quizOptions"></div>
+    <div class="quiz-nav">
+      <div class="score-display">Score: <span id="scoreVal">0</span> / <span id="totalVal">0</span></div>
+      <button onclick="nextQuestion()">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- STUDY PLAN -->
+<div class="section" id="plan">
+  <h2>📅 3-Month N5 Study Plan</h2>
+  <div class="tip-box">
+    <h4>⏱️ Recommended Daily Study Time</h4>
+    <p>30–60 minutes per day is ideal. Consistency matters more than long sessions. Use a spaced repetition system (Anki) for vocabulary and kanji every day.</p>
+  </div>
+
+  <div class="plan-week">
+    <h4>🗓️ Month 1 — Foundations (Weeks 1-4)</h4>
+    <ul>
+      <li>Week 1: Learn all 46 Hiragana. Write each 10×/day. Use apps like Dr. Moku or Duolingo.</li>
+      <li>Week 2: Master Hiragana reading. Start 46 Katakana. Learn 50 basic vocabulary words.</li>
+      <li>Week 3: Complete Katakana. Start reading simple texts in kana. Learn 50 more vocab words.</li>
+      <li>Week 4: Review kana. Intro to grammar: は、です、particle basics. First 20 N5 kanji (numbers + time).</li>
+    </ul>
+  </div>
+
+  <div class="plan-week">
+    <h4>🗓️ Month 2 — Core Building (Weeks 5-8)</h4>
+    <ul>
+      <li>Week 5: Grammar: verb present/past forms, key particles (を、に、で). 20 new kanji.</li>
+      <li>Week 6: Grammar: adjectives (い/な types), あります/います. 20 new kanji. 100 more vocab.</li>
+      <li>Week 7: Grammar: て-form, requests, permission/prohibition. 20 more kanji.</li>
+      <li>Week 8: Grammar: negative forms, questions, expressing wants. 23 final N5 kanji. 100 vocab.</li>
+    </ul>
+  </div>
+
+  <div class="plan-week">
+    <h4>🗓️ Month 3 — Practice & Polish (Weeks 9-12)</h4>
+    <ul>
+      <li>Week 9: Review all grammar. Read N5-level texts. Take first mock test to identify weak areas.</li>
+      <li>Week 10: JLPT N5 listening practice. Shadowing exercises. Fill vocabulary gaps.</li>
+      <li>Week 11: Full practice tests under timed conditions (2× this week).</li>
+      <li>Week 12: Light review, rest, confidence building. You're ready! 🎌</li>
+    </ul>
+  </div>
+
+  <h3>📱 Recommended Apps & Tools</h3>
+  <table class="resources">
+    <tr><th>Tool</th><th>Purpose</th><th>Free?</th></tr>
+    <tr><td>Anki</td><td>Spaced repetition flashcards (use JLPT N5 deck)</td><td>Free</td></tr>
+    <tr><td>Duolingo Japanese</td><td>Gamified basics, kana practice</td><td>Free</td></tr>
+    <tr><td>WaniKani</td><td>Structured kanji + vocab learning (radicals first)</td><td>Partial</td></tr>
+    <tr><td>Bunpro</td><td>Grammar practice with SRS</td><td>Partial</td></tr>
+    <tr><td>NHK Web Easy</td><td>Simple Japanese news articles</td><td>Free</td></tr>
+    <tr><td>HelloTalk</td><td>Language exchange with native speakers</td><td>Free</td></tr>
+    <tr><td>Genki Textbook</td><td>Best beginner Japanese textbook (N5-N4)</td><td>Paid</td></tr>
+    <tr><td>JapanDict / Jisho</td><td>Japanese dictionary</td><td>Free</td></tr>
+    <tr><td>JLPT Sensei</td><td>N5 practice tests and word lists</td><td>Free</td></tr>
+    <tr><td>Pimsleur Japanese</td><td>Audio speaking course</td><td>Paid</td></tr>
+  </table>
+</div>
+
+<!-- RESOURCES -->
+<div class="section" id="resources">
+  <h2>🔗 Resources & Test Info</h2>
+  
+  <h3>📝 About the JLPT N5 Test</h3>
+  <div class="grammar-box">
+    <div class="pattern">Test Structure</div>
+    <div class="usage">Section 1: Language Knowledge (Vocabulary + Kanji) — 25 min | Section 2: Language Knowledge (Grammar) + Reading — 50 min | Section 3: Listening — 30 min | Total: ~105 minutes</div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">Scoring</div>
+    <div class="usage">Total 180 points. Passing score: 80 points (44%). Each section has a minimum required score. Vocabulary/Grammar/Reading sections add to ~120 pts; Listening ~60 pts.</div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">Registration</div>
+    <div class="usage">JLPT is held twice yearly: July and December. Register at jlpt.jp. Test available in 85+ countries. Results in February (July test) and March (December test).</div>
+  </div>
+
+  <h3>📚 Free Online Resources</h3>
+  <table class="resources">
+    <tr><th>Resource</th><th>URL</th><th>What's There</th></tr>
+    <tr><td>JLPT Official</td><td>jlpt.jp</td><td>Registration, sample tests</td></tr>
+    <tr><td>JLPT Sensei</td><td>jlptsensei.com</td><td>Word lists, grammar, tests</td></tr>
+    <tr><td>Tae Kim's Grammar</td><td>guidetojapanese.org</td><td>Free complete grammar guide</td></tr>
+    <tr><td>NHK Web Easy</td><td>www3.nhk.or.jp/news/easy</td><td>Simplified Japanese news</td></tr>
+    <tr><td>Jisho Dictionary</td><td>jisho.org</td><td>Best online JP dictionary</td></tr>
+    <tr><td>Wanikani</td><td>wanikani.com</td><td>Structured kanji learning</td></tr>
+    <tr><td>JapanesePod101</td><td>japanesepod101.com</td><td>Audio/video lessons</td></tr>
+    <tr><td>Erin's Challenge</td><td>erin.ne.jp</td><td>Free video-based N5 course</td></tr>
+  </table>
+
+  <h3>📖 Recommended Textbooks</h3>
+  <div class="grammar-box">
+    <div class="pattern">Genki I (Elementary Japanese) — 3rd Edition</div>
+    <div class="usage">The gold standard beginner textbook. Covers N5-N4 level. Includes workbook. Best if you want structured classroom-style learning.</div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">Japanese for Busy People</div>
+    <div class="usage">Compact, practical course for adult learners. Good for people who want to speak quickly. 3 volumes.</div>
+  </div>
+  <div class="grammar-box">
+    <div class="pattern">Minna no Nihongo (みんなの日本語)</div>
+    <div class="usage">Very popular in Japan and Asia. Entirely in Japanese (need companion English notes). Excellent for immersive learning. Used in Japanese language schools.</div>
+  </div>
+
+  <h3>🎯 Final Exam Tips</h3>
+  <div class="tip-box">
+    <h4>✅ Test Day Strategy</h4>
     <p>
-      This template is a simple, but powerful single
-      <code>index.html</code> file deployed to
-      <a href="https://vercel.com">Vercel</a>. When your site is deployed, all
-      static assets (like HTML, JavaScript, CSS, images, and more) are deployed
-      globally to every
-      <a href="https://vercel.com/docs/concepts/edge-network/overview"
-        >Vercel Edge Network</a
-      >
-      region.
+    • <strong>Vocabulary section</strong>: Read all options before choosing. Eliminate wrong kanji readings first.<br>
+    • <strong>Grammar section</strong>: Pay attention to particles — they're frequently tested.<br>
+    • <strong>Reading section</strong>: Skim first, then answer questions. Look for key words.<br>
+    • <strong>Listening section</strong>: Listen for the QUESTION being asked, not just content. Take brief notes.<br>
+    • <strong>Timing</strong>: Don't spend too long on any one question. Move on and return.<br>
+    • Practice with official JLPT sample tests available at jlpt.jp!
     </p>
-    <h2>Simple, privacy-friendly analytics</h2>
-    <p>
-      Want to understand your visitor traffic? Vercel Analytics gives you
-      first-party, privacy-friendly traffic analytics for your HTML site. This
-      template is already configured using the following script:
-    </p>
-    <pre><code>&lt;script defer src="/_vercel/insights/script.js"&gt;&lt;/script&gt;</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/analytics">Vercel Analytics</a>.
-    </p>
-    <h2>Integrated with git</h2>
-    <p>
-      Deploying updates to your site is as simple as
-      <code>git push</code> thanks to Vercel's advanced
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-      Support for GitHub, GitLab, Bitbucket is zero-configuration, and with the
-      flexible Vercel CLI and API, you can integrate with any tool possible.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/git">Git Integration</a>.
-    </p>
-    <h2>Fast <code>gzip</code> compression</h2>
-    <p>
-      To help ensure the smallest possible file sizes for your static assets,
-      the Vercel Edge Network compresses files by default using
-      <code>gzip</code>. You can also optionally use
-      <code>brotli</code> compressesion if you prefer.
-    </p>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/edge-network/compression"
-        >compression</a
-      >.
-    </p>
-    <h2>Advanced routing configuration</h2>
-    <p>
-      Vercel gives you a variety of ways to configure the routing of your
-      website. For example, adding redirects, rewrites, or headers to your page.
-      While you can use <code>vercel.json</code> to define these through JSON,
-      you can also express your routing configuration as code using
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-    <p>
-      Middleware runs before the
-      <a href="https://vercel.com/docs/concepts/edge-network/caching"
-        >Vercel Edge Network Cache</a
-      >, so you can configure routing exactly as your application needs. For
-      example, this template uses <code>middleware.js</code> defined in the root
-      of the repository to add additional security headers to the site:
-    </p>
-    <pre><code>referrer-policy: origin-when-cross-origin
-strict-transport-security: max-age=31536000; includeSubDomains; preload
-x-content-type-options: nosniff
-x-dns-prefetch-control: on
-x-frame-options: DENY</code></pre>
-    <p>
-      Learn more about
-      <a href="https://vercel.com/docs/concepts/functions/edge-middleware"
-        >Vercel Edge Middleware</a
-      >.
-    </p>
-  </body>
+  </div>
+</div>
+
+</div><!-- end .content -->
+
+<script>
+function show(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('nav button').forEach((b,i) => {
+    const ids = ['intro','hiragana','katakana','kanji','vocab','grammar','speaking','quiz','plan','resources'];
+    b.classList.toggle('active', ids[i] === id);
+  });
+  if(id === 'quiz') initQuiz();
+}
+
+const quizData = {
+  hiragana: [
+    {q:'あ',a:'a',opts:['a','i','u','e']},{q:'か',a:'ka',opts:['ka','ki','sa','ta']},
+    {q:'さ',a:'sa',opts:['ka','sa','na','ha']},{q:'た',a:'ta',opts:['ra','ma','ta','na']},
+    {q:'な',a:'na',opts:['na','ma','ha','wa']},{q:'は',a:'ha',opts:['ba','ha','pa','ma']},
+    {q:'ま',a:'ma',opts:['ma','na','ra','ya']},{q:'や',a:'ya',opts:['ya','ra','wa','ma']},
+    {q:'ら',a:'ra',opts:['la','ra','wa','na']},{q:'わ',a:'wa',opts:['wa','ra','ha','ma']},
+    {q:'ん',a:'n',opts:['n','m','nu','ru']},{q:'い',a:'i',opts:['i','e','u','a']},
+    {q:'う',a:'u',opts:['u','o','a','i']},{q:'え',a:'e',opts:['e','i','a','o']},
+    {q:'お',a:'o',opts:['o','u','a','e']},{q:'き',a:'ki',opts:['ki','gi','chi','ni']},
+    {q:'し',a:'shi',opts:['si','shi','chi','ji']},{q:'ち',a:'chi',opts:['chi','tchi','ji','shi']},
+    {q:'つ',a:'tsu',opts:['tsu','zu','su','chi']},{q:'に',a:'ni',opts:['ni','mi','ri','hi']},
+  ],
+  kanji: [
+    {q:'一',a:'one',opts:['one','two','three','four']},{q:'二',a:'two',opts:['one','two','three','five']},
+    {q:'山',a:'mountain',opts:['mountain','river','tree','fire']},{q:'川',a:'river',opts:['river','mountain','rain','sea']},
+    {q:'木',a:'tree/wood',opts:['tree/wood','flower','grass','stone']},{q:'日',a:'sun/day',opts:['moon','sun/day','star','sky']},
+    {q:'月',a:'moon/month',opts:['moon/month','sun','year','day']},{q:'火',a:'fire',opts:['fire','water','earth','wind']},
+    {q:'水',a:'water',opts:['water','fire','ice','wind']},{q:'人',a:'person',opts:['person','man','woman','child']},
+    {q:'女',a:'woman',opts:['man','woman','child','teacher']},{q:'男',a:'man',opts:['man','woman','boy','girl']},
+    {q:'大',a:'big/great',opts:['big/great','small','long','short']},{q:'小',a:'small',opts:['big','small','tall','thin']},
+    {q:'上',a:'above/up',opts:['above/up','below','left','right']},{q:'下',a:'below/down',opts:['above','below/down','inside','outside']},
+    {q:'行',a:'go',opts:['go','come','return','enter']},{q:'来',a:'come',opts:['go','come','return','run']},
+    {q:'食',a:'eat/food',opts:['eat/food','drink','cook','buy']},{q:'見',a:'see/look',opts:['hear','see/look','speak','think']},
+  ],
+  vocab: [
+    {q:'おはよう',a:'Good morning',opts:['Good morning','Good evening','Goodbye','Thank you']},
+    {q:'ありがとう',a:'Thank you',opts:['Sorry','Please','Thank you','Welcome']},
+    {q:'すみません',a:'Excuse me',opts:['Thank you','Yes','Excuse me','No']},
+    {q:'たべます',a:'to eat',opts:['to drink','to eat','to go','to read']},
+    {q:'のみます',a:'to drink',opts:['to eat','to drink','to see','to write']},
+    {q:'いきます',a:'to go',opts:['to come','to go','to return','to buy']},
+    {q:'おおきい',a:'big',opts:['big','small','tall','new']},
+    {q:'ちいさい',a:'small',opts:['big','old','small','cheap']},
+    {q:'あたらしい',a:'new',opts:['old','new','cheap','good']},
+    {q:'すき',a:'liked/favorite',opts:['liked/favorite','disliked','okay','interesting']},
+    {q:'どこ',a:'where',opts:['what','where','who','when']},
+    {q:'なに',a:'what',opts:['who','where','what','when']},
+    {q:'だれ',a:'who',opts:['what','where','who','how']},
+    {q:'いくら',a:'how much',opts:['how many','how much','how long','how often']},
+    {q:'きょう',a:'today',opts:['yesterday','today','tomorrow','every day']},
+    {q:'あした',a:'tomorrow',opts:['today','yesterday','tomorrow','now']},
+  ]
+};
+
+let currentType = 'hiragana';
+let currentQ = 0;
+let score = 0;
+let total = 0;
+let shuffled = [];
+let answered = false;
+
+function shuffle(arr) { return [...arr].sort(()=>Math.random()-0.5); }
+
+function initQuiz() {
+  currentType = document.getElementById('quizType').value;
+  shuffled = shuffle(quizData[currentType]);
+  currentQ = 0; score = 0; total = 0;
+  document.getElementById('scoreVal').textContent = 0;
+  document.getElementById('totalVal').textContent = 0;
+  loadQuestion();
+}
+
+function loadQuestion() {
+  answered = false;
+  const data = shuffled[currentQ % shuffled.length];
+  document.getElementById('quizQuestion').textContent = data.q;
+  const hints = {hiragana:'What is the romaji reading?', kanji:'What does this kanji mean?', vocab:'What does this mean?'};
+  document.getElementById('quizHint').textContent = hints[currentType];
+  const opts = shuffle(data.opts);
+  const container = document.getElementById('quizOptions');
+  container.innerHTML = '';
+  opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'quiz-opt';
+    btn.textContent = opt;
+    btn.onclick = () => checkAnswer(btn, opt, data.a);
+    container.appendChild(btn);
+  });
+}
+
+function checkAnswer(btn, selected, correct) {
+  if(answered) return;
+  answered = true;
+  total++;
+  document.getElementById('totalVal').textContent = total;
+  if(selected === correct) {
+    btn.classList.add('correct');
+    score++;
+    document.getElementById('scoreVal').textContent = score;
+  } else {
+    btn.classList.add('wrong');
+    document.querySelectorAll('.quiz-opt').forEach(b => {
+      if(b.textContent === correct) b.classList.add('correct');
+    });
+  }
+}
+
+function nextQuestion() {
+  currentQ++;
+  if(currentQ >= shuffled.length) shuffled = shuffle(quizData[currentType]);
+  loadQuestion();
+}
+
+// Init quiz when tab opened
+document.addEventListener('DOMContentLoaded', () => {});
+</script>
+</body>
 </html>
