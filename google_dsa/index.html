@@ -1038,12 +1038,16 @@ prev, curr = None, head
 <span class="keyword">def</span> <span class="func">largestRectangleArea</span>(heights):
     stack = []; max_area = <span class="num">0</span>
     <span class="keyword">for</span> i, h <span class="keyword">in</span> enumerate(heights + [<span class="num">0</span>]):  <span class="comment"># append 0 to flush stack</span>
-        <span class="keyword">while</span> stack <span class="keyword">and</span> heights[stack[-<span class="num">1</span>]] >= h:
+        <span class="keyword">while</span> stack <span class="keyword">and</span> heights[stack[-<span class="num">1</span>]] >= h: <span class="comment"># A smaller h acts as a right boundary</span>
             height = heights[stack.pop()]
             width = i <span class="keyword">if not</span> stack <span class="keyword">else</span> i - stack[-<span class="num">1</span>] - <span class="num">1</span>
             max_area = max(max_area, height * width)
         stack.append(i)
     <span class="keyword">return</span> max_area</code></pre>
+    <div class="note">
+      <strong>Optimization:</strong> Using `>` is correct, but `>=` is an optimization since the latest duplicate height covers the full width, making
+      earlier identical heights redundant.
+    </div>
     <div class="tc"><span class="chip chip-time">Time: O(n) — each element pushed/popped at most once</span><span class="chip chip-space">Space: O(n)</span></div>
     <div class="battleground">
       <span style="color:var(--muted);font-size:11px;align-self:center">LeetCode: </span>
