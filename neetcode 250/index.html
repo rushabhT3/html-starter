@@ -159,6 +159,11 @@
   /* ── Empty state ── */
   .empty { text-align: center; padding: 3rem; color: var(--text3); }
 
+  /* ── Drag & Drop ── */
+  .prob-row.dragging { opacity: 0.4; background: var(--bg4); }
+  .prob-row.drag-over-top { border-top: 2px solid var(--accent); }
+  .prob-row.drag-over-bottom { border-bottom: 2px solid var(--accent); }
+
   /* ── Responsive ── */
   @media (max-width: 640px) {
     .summary { grid-template-columns: 1fr; }
@@ -589,9 +594,22 @@ let checked = {};
 let showTags = true;
 let openGroups = {};  // key -> bool (true = open)
 let theme = 'dark';
+let currentProblems = [];
 
 try { checked = JSON.parse(localStorage.getItem('nc250_progress') || '{}'); } catch(e) {}
 try { theme = localStorage.getItem('nc250_theme') || 'dark'; } catch(e) {}
+try { 
+  const saved = localStorage.getItem('nc250_problems');
+  if (saved) currentProblems = JSON.parse(saved);
+} catch(e) {}
+
+if (!currentProblems || currentProblems.length === 0) {
+  currentProblems = JSON.parse(JSON.stringify(PROBLEMS));
+}
+
+function saveCustomProblems() {
+  try { localStorage.setItem('nc250_problems', JSON.stringify(currentProblems)); } catch(e) {}
+}
 
 function applyTheme() {
   document.documentElement.setAttribute('data-theme', theme);
@@ -606,9 +624,11 @@ function saveProgress() {
   try { localStorage.setItem('nc250_progress', JSON.stringify(checked)); } catch(e) {}
 }
 function resetProgress() {
-  if (!confirm('Reset all progress? This cannot be undone.')) return;
+  if (!confirm('Reset all progress & custom formatting? This cannot be undone.')) return;
   checked = {};
+  currentProblems = JSON.parse(JSON.stringify(PROBLEMS));
   saveProgress();
+  saveCustomProblems();
   render();
 }
 function toggleTags() {
@@ -645,8 +665,8 @@ function toggleProblem(id) {
 // GLOBAL STATS
 // ═══════════════════════════════════════════════════════
 function updateGlobal() {
-  const done = PROBLEMS.filter(p => checked[p.id]).length;
-  const total = PROBLEMS.length;
+  const done = currentProblems.filter(p => checked[p.id]).length;
+  const total = currentProblems.length;
   const pct = Math.round(done / total * 100);
   document.getElementById('gp-text').textContent = done + ' / ' + total;
   document.getElementById('gp-fill').style.width = pct + '%';
@@ -658,7 +678,7 @@ function updateGlobal() {
 // ═══════════════════════════════════════════════════════
 function buildTopicChips() {
   const counts = {};
-  PROBLEMS.forEach(p => { counts[p.topic] = (counts[p.topic] || 0) + 1; });
+  currentProblems.forEach(p => { counts[p.topic] = (counts[p.topic] || 0) + 1; });
   document.getElementById('topic-chips').innerHTML =
     Object.entries(counts)
       .sort((a, b) => a[0].localeCompare(b[0]))
@@ -672,7 +692,7 @@ function buildTopicChips() {
 function getSortedProblems() {
   const order = document.getElementById('sel-order').value;
   const q = document.getElementById('search-input').value.toLowerCase().trim();
-  let probs = PROBLEMS.filter(p =>
+  let probs = currentProblems.filter(p =>
     !q || p.name.toLowerCase().includes(q) || p.tags.some(t => t.toLowerCase().includes(q)) || p.topic.toLowerCase().includes(q)
   );
   if (order === 'difficulty') {
@@ -719,7 +739,9 @@ function probRowHTML(p, idx) {
   const proBadge = p.pro
     ? `<span class="pro-badge">🔒 Premium</span>`
     : '';
-  return `<div class="prob-row${isDone ? ' solved' : ''}" data-id="${p.id}">
+  return `<div class="prob-row${isDone ? ' solved' : ''}" data-id="${p.id}"
+               draggable="true" ondragstart="handleDragStart(event, ${p.id})"
+               ondragover="handleDragOverRow(event)" ondragleave="handleDragLeaveRow(event)" ondrop="handleDropRow(event, ${p.id})">
     <span class="prob-num">${idx}</span>
     <a class="prob-name" href="${p.url}" target="_blank" rel="noopener">${p.name}${proBadge}</a>
     <div class="prob-meta">
@@ -744,7 +766,7 @@ function render() {
   }
 
   if (isFlat) {
-    main.innerHTML = `<div class="flat-block">${probs.map((p, i) => probRowHTML(p, i + 1)).join('')}</div>`;
+    main.innerHTML = `<div class="flat-block" ondragover="handleDragOverGroup(event)" ondrop="handleDropGroup(event, 'flat')">${probs.map((p, i) => probRowHTML(p, i + 1)).join('')}</div>`;
     return;
   }
 
@@ -759,7 +781,7 @@ function render() {
         <div class="group-prog-track"><div class="group-prog-fill" style="width:${pct}%"></div></div>
         <span class="chev${isOpen ? ' open' : ''}">&#9650;</span>
       </div>
-      <div class="group-body${isOpen ? ' open' : ''}">
+      <div class="group-body${isOpen ? ' open' : ''}" ondragover="handleDragOverGroup(event)" ondrop="handleDropGroup(event, '${g.key}')">
         ${g.probs.map((p, i) => probRowHTML(p, i + 1)).join('')}
       </div>
     </div>`;
@@ -777,6 +799,112 @@ function toggleGroup(key) {
   const isNowOpen = openGroups[key] !== false;
   body.classList.toggle('open', isNowOpen);
   chev.classList.toggle('open', isNowOpen);
+}
+
+// ═══════════════════════════════════════════════════════
+// DRAG & DROP LOGIC
+// ═══════════════════════════════════════════════════════
+let draggedId = null;
+
+function handleDragStart(e, id) {
+  draggedId = id;
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/plain', id);
+  setTimeout(() => { e.target.classList.add('dragging'); }, 0);
+}
+
+function handleDragOverRow(e) {
+  e.preventDefault();
+  e.stopPropagation(); // Prevent triggering group-level drop
+  const row = e.currentTarget;
+  const bounding = row.getBoundingClientRect();
+  const offset = bounding.y + (bounding.height / 2);
+  
+  row.classList.remove('drag-over-top', 'drag-over-bottom');
+  if (e.clientY - offset > 0) {
+    row.classList.add('drag-over-bottom');
+  } else {
+    row.classList.add('drag-over-top');
+  }
+}
+
+function handleDragLeaveRow(e) {
+  e.currentTarget.classList.remove('drag-over-top', 'drag-over-bottom');
+}
+
+function handleDropRow(e, targetId) {
+  e.preventDefault();
+  e.stopPropagation();
+  const row = e.currentTarget;
+  row.classList.remove('drag-over-top', 'drag-over-bottom');
+  
+  if (!draggedId || draggedId === targetId) return;
+
+  const bounding = row.getBoundingClientRect();
+  const insertAfter = (e.clientY - (bounding.y + bounding.height / 2)) > 0;
+  
+  moveProblem(draggedId, targetId, insertAfter);
+}
+
+function handleDragOverGroup(e) {
+  e.preventDefault(); // Necessary to allow native dropping
+}
+
+function handleDropGroup(e, groupKey) {
+  e.preventDefault();
+  if (!draggedId) return;
+  
+  // Only adjust Week logic if we are grouping by weeks
+  if (groupKey.startsWith('w')) {
+    const weekNum = parseInt(groupKey.substring(1));
+    const draggedProblem = currentProblems.find(p => p.id === draggedId);
+    if(draggedProblem && draggedProblem.week !== weekNum) {
+      draggedProblem.week = weekNum;
+      
+      // Move to end of that week specifically
+      const draggedIdx = currentProblems.findIndex(p => p.id === draggedId);
+      currentProblems.splice(draggedIdx, 1);
+      
+      // Find index of the last problem in the target week
+      let lastIndexOfWeek = -1;
+      for (let i = 0; i < currentProblems.length; i++) {
+        if (currentProblems[i].week === weekNum) lastIndexOfWeek = i;
+      }
+      
+      if (lastIndexOfWeek !== -1) {
+        currentProblems.splice(lastIndexOfWeek + 1, 0, draggedProblem);
+      } else {
+        currentProblems.push(draggedProblem); // Week empty, push to end
+      }
+      
+      saveCustomProblems();
+      render();
+    }
+  }
+}
+
+document.addEventListener('dragend', (e) => {
+  if(e.target && e.target.classList) e.target.classList.remove('dragging');
+  draggedId = null;
+});
+
+function moveProblem(draggedId, targetId, insertAfter) {
+  const draggedIdx = currentProblems.findIndex(p => p.id === draggedId);
+  const targetIdx = currentProblems.findIndex(p => p.id === targetId);
+  if (draggedIdx === -1 || targetIdx === -1) return;
+
+  const draggedProb = currentProblems[draggedIdx];
+  const targetProb = currentProblems[targetIdx];
+
+  // Adopt target's week if grouping is set
+  draggedProb.week = targetProb.week;
+  
+  currentProblems.splice(draggedIdx, 1);
+  const newTargetIdx = currentProblems.findIndex(p => p.id === targetId);
+  currentProblems.splice(insertAfter ? newTargetIdx + 1 : newTargetIdx, 0, draggedProb);
+
+  saveCustomProblems();
+  render();
 }
 
 // ═══════════════════════════════════════════════════════
